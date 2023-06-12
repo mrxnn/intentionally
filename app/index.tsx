@@ -1,0 +1,178 @@
+import { useCallback } from "react";
+import { Redirect, useRouter } from "expo-router";
+import { Text, View, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from "../resources/colors";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
+import { LinearGradient } from "expo-linear-gradient";
+import GradientCircle from "../resources/graphics/gradient-circle.png";
+import { ChevronRight } from "lucide-react-native";
+import * as SplashScreen from "expo-splash-screen";
+import { useFonts } from "expo-font";
+
+SplashScreen.preventAutoHideAsync();
+
+export default () => {
+  let isFirstTime = false;
+  let router = useRouter();
+
+  let [fontsLoaded] = useFonts({
+    "TT Commons Thin": require("../resources/fonts/tt-commons/TT-Commons-Thin.otf"),
+    "TT Commons ExtraLight": require("../resources/fonts/tt-commons/TT-Commons-ExtraLight.otf"),
+    "TT Commons Light": require("../resources/fonts/tt-commons/TT-Commons-Light.otf"),
+    "TT Commons Regular": require("../resources/fonts/tt-commons/TT-Commons-Regular.otf"),
+    "TT Commons Medium": require("../resources/fonts/tt-commons/TT-Commons-Medium.otf"),
+    "TT Commons DemiBold": require("../resources/fonts/tt-commons/TT-Commons-DemiBold.otf"),
+    "TT Commons Bold": require("../resources/fonts/tt-commons/TT-Commons-Bold.otf"),
+    "TT Commons ExtraBold": require("../resources/fonts/tt-commons/TT-Commons-ExtraBold.otf"),
+    "TT Commons Black": require("../resources/fonts/tt-commons/TT-Commons-Black.otf"),
+  });
+
+  let onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) await SplashScreen.hideAsync();
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) return null;
+
+  if (isFirstTime) return <Redirect href="/home" />;
+
+  return (
+    <>
+      <LinearGradient
+        colors={[COLORS.backgroundBlueLight, COLORS.backgroundBlueDark]}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        }}
+      />
+
+      <View onLayout={onLayoutRootView} />
+
+      <Image source={GradientCircle} style={{ position: "absolute" }} />
+
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingHorizontal: 20,
+        }}>
+        <View style={{ alignItems: "flex-end" }}>
+          <TouchableOpacity
+            onPress={() => router.push("/home")}
+            style={{
+              backgroundColor: COLORS.backgroundGray,
+              paddingVertical: 6,
+              paddingHorizontal: 16,
+              borderRadius: 999,
+              flexDirection: "row",
+              alignItems: "center",
+            }}>
+            <Text
+              style={{
+                color: COLORS.foregroundLight,
+                fontSize: 14,
+                fontFamily: "TT Commons Medium",
+              }}>
+              Skip
+            </Text>
+            <ChevronRight color={COLORS.foregroundLight} size={22} />
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={{
+            marginTop: "auto",
+            marginBottom: 20,
+          }}>
+          <Text
+            style={{
+              color: COLORS.primaryBlue,
+              textTransform: "uppercase",
+              fontSize: 12,
+              letterSpacing: 1,
+              fontFamily: "TT Commons Medium",
+              marginBottom: 16,
+            }}>
+            Getting Started
+          </Text>
+          <Text
+            style={{
+              fontSize: 24,
+              fontFamily: "TT Commons DemiBold",
+              letterSpacing: -0.4,
+              color: COLORS.foregroundLight,
+              marginBottom: 8,
+            }}>
+            Hello, Let's finish setting up the account
+          </Text>
+
+          <View
+            style={{
+              borderBottomColor: COLORS.borderBlue,
+              borderBottomWidth: 1,
+              paddingBottom: 14,
+              paddingTop: 22,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}>
+            <Text
+              style={{
+                color: COLORS.foregroundLight,
+                fontSize: 16,
+                letterSpacing: -0.4,
+                fontFamily: "TT Commons Regular",
+              }}>
+              Setup your profile
+            </Text>
+            <ChevronRight color={COLORS.foregroundLight} size={24} />
+          </View>
+          <View
+            style={{
+              borderBottomColor: COLORS.borderBlue,
+              borderBottomWidth: 1,
+              paddingBottom: 14,
+              paddingTop: 22,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}>
+            <Text
+              style={{
+                color: COLORS.foregroundLight,
+                fontSize: 16,
+                letterSpacing: -0.4,
+                fontFamily: "TT Commons Regular",
+              }}>
+              Customize categories
+            </Text>
+            <ChevronRight color={COLORS.foregroundLight} size={24} />
+          </View>
+          <View
+            style={{
+              paddingBottom: 14,
+              paddingTop: 22,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}>
+            <Text
+              style={{
+                color: COLORS.foregroundLight,
+                fontSize: 16,
+                letterSpacing: -0.4,
+                fontFamily: "TT Commons Regular",
+              }}>
+              Create your first goal
+            </Text>
+            <ChevronRight color={COLORS.foregroundLight} size={24} />
+          </View>
+        </View>
+        <StatusBar style="light" />
+      </SafeAreaView>
+    </>
+  );
+};
