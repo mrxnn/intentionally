@@ -9,32 +9,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import GradientCircle from "../resources/graphics/gradient-circle.png";
 import { ChevronRight } from "lucide-react-native";
 import * as SplashScreen from "expo-splash-screen";
-import { useFonts } from "expo-font";
+import { useFont } from "../hooks/useFont";
 
 SplashScreen.preventAutoHideAsync();
 
 export default () => {
-  let isFirstTime = false;
+  let isFirstTime = true;
   let router = useRouter();
-
-  let [fontsLoaded] = useFonts({
-    "TT Commons Thin": require("../resources/fonts/tt-commons/TT-Commons-Thin.otf"),
-    "TT Commons ExtraLight": require("../resources/fonts/tt-commons/TT-Commons-ExtraLight.otf"),
-    "TT Commons Light": require("../resources/fonts/tt-commons/TT-Commons-Light.otf"),
-    "TT Commons Regular": require("../resources/fonts/tt-commons/TT-Commons-Regular.otf"),
-    "TT Commons Medium": require("../resources/fonts/tt-commons/TT-Commons-Medium.otf"),
-    "TT Commons DemiBold": require("../resources/fonts/tt-commons/TT-Commons-DemiBold.otf"),
-    "TT Commons Bold": require("../resources/fonts/tt-commons/TT-Commons-Bold.otf"),
-    "TT Commons ExtraBold": require("../resources/fonts/tt-commons/TT-Commons-ExtraBold.otf"),
-    "TT Commons Black": require("../resources/fonts/tt-commons/TT-Commons-Black.otf"),
-  });
-
-  let onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) await SplashScreen.hideAsync();
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) return null;
-
   if (isFirstTime) return <Redirect href="/home" />;
 
   return (
@@ -49,8 +30,6 @@ export default () => {
           bottom: 0,
         }}
       />
-
-      <View onLayout={onLayoutRootView} />
 
       <Image source={GradientCircle} style={{ position: "absolute" }} />
 
