@@ -16,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 export default () => {
   let isFirstTime = true;
   let router = useRouter();
-  if (isFirstTime) return <Redirect href="/home" />;
+  if (!isFirstTime) return <Redirect href="/home" />;
 
   return (
     <>
@@ -40,7 +40,7 @@ export default () => {
         }}>
         <View style={{ alignItems: "flex-end" }}>
           <TouchableOpacity
-            onPress={() => router.push("/home")}
+            onPress={() => router.push("/home/transactions")}
             style={{
               backgroundColor: COLORS.backgroundGray,
               paddingVertical: 6,

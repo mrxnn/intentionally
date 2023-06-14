@@ -13,7 +13,13 @@ export default function Layout() {
       initialRouteName="home"
       screenOptions={{
         headerShown: false,
-      }}
-    />
+      }}>
+      <Stack.Screen
+        name="create"
+        options={{
+          presentation: "modal",
+        }}
+      />
+    </Stack>
   );
 }

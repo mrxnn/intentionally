@@ -52,14 +52,14 @@ export default () => {
                 fontSize: 14,
                 fontFamily: "TT Commons Medium",
               }}>
-              Feb 12 - May 20
+              Dec 31 - Jan 30
             </Text>
             <ChevronDown color={COLORS.foregroundLight} size={22} />
           </TouchableOpacity>
         </View>
       </SafeAreaView>
 
-      <ScrollView style={{ marginTop: -100 }}>
+      <ScrollView style={{ marginTop: -90 }}>
         <BarChart />
         <Records />
       </ScrollView>
@@ -92,7 +92,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            1800
+            1.8
           </Text>
         </View>
         <View
@@ -111,7 +111,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            1600
+            1.6
           </Text>
         </View>
         <View
@@ -130,7 +130,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            1400
+            1.4
           </Text>
         </View>
         <View
@@ -149,7 +149,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            1200
+            1.2
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -167,7 +167,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            1000
+            1.0
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -185,7 +185,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            800
+            0.8
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -203,7 +203,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            600
+            0.6
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -221,7 +221,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            400
+            0.4
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -239,7 +239,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            200
+            0.2
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -257,7 +257,7 @@ const BarChart = () => {
               fontSize: 12,
               fontFamily: "TT Commons Medium",
             }}>
-            0
+            0.0
           </Text>
         </View>
       </View>
@@ -311,7 +311,7 @@ const BarChart = () => {
                   height: 1,
                   backgroundColor: "#C7CBD0",
                   opacity: 0.8,
-                  transform: [{ rotate: "-12deg" }],
+                  transform: [{ rotate: "-12deg" }, { translateX: -4 }],
                 }}
               />
             ))}
@@ -426,8 +426,8 @@ const Records = () => {
         <Record icon="🍉" category="Groceries" noOfEntries={9} />
         <Record icon="🚕" category="Transportation" noOfEntries={2} />
         <Record icon="💰" category="Salary" noOfEntries={2} />
+        <Record icon="🌵" category="Environment" noOfEntries={4} />
         <Record icon="🍄" category="Entertainment" noOfEntries={2} />
-        <Record icon="📜" category="Subscriptions" noOfEntries={4} />
         <Record icon="🍉" category="Groceries" noOfEntries={9} />
         <Record icon="🚕" category="Transportation" noOfEntries={2} />
       </View>
@@ -485,7 +485,9 @@ const Record = ({
             style={{
               width: 4,
               height: 4,
-              backgroundColor: COLORS.foregroudLightInactive,
+              backgroundColor: category.startsWith("S")
+                ? "tomato"
+                : COLORS.foregroudLightInactive,
               borderRadius: 999,
             }}
           />

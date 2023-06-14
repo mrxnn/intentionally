@@ -1,15 +1,7 @@
-import { useCallback } from "react";
-import { Redirect, Tabs, useRouter } from "expo-router";
-import { Text, View, Image } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Image, SafeAreaView, Text, View } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import GradientCircle from "../../resources/graphics/gradient-circle.png";
-import { Landmark } from "lucide-react-native";
-import * as SplashScreen from "expo-splash-screen";
-import { useFonts } from "expo-font";
 
 export default () => {
   return (
@@ -26,6 +18,24 @@ export default () => {
       />
 
       <Image source={GradientCircle} style={{ position: "absolute" }} />
+
+      <SafeAreaView style={{ flex: 1 }}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            flex: 1,
+          }}>
+          <Text
+            style={{
+              color: COLORS.foregroundLight,
+              fontFamily: "TT Commons DemiBold",
+              fontSize: 24,
+            }}>
+            Budget
+          </Text>
+        </View>
+      </SafeAreaView>
     </>
   );
 };
