@@ -59,7 +59,7 @@ export default () => {
         </View>
       </SafeAreaView>
 
-      <ScrollView style={{ marginTop: -80 }}>
+      <ScrollView style={{ marginTop: -100 }}>
         <BarChart />
         <Records />
       </ScrollView>
@@ -422,6 +422,11 @@ const Records = () => {
         </TouchableOpacity>
       </View>
       <View style={{ rowGap: 24, marginTop: 28 }}>
+        <Record icon="📜" category="Subscriptions" noOfEntries={4} />
+        <Record icon="🍉" category="Groceries" noOfEntries={9} />
+        <Record icon="🚕" category="Transportation" noOfEntries={2} />
+        <Record icon="💰" category="Salary" noOfEntries={2} />
+        <Record icon="🍄" category="Entertainment" noOfEntries={2} />
         <Record icon="📜" category="Subscriptions" noOfEntries={4} />
         <Record icon="🍉" category="Groceries" noOfEntries={9} />
         <Record icon="🚕" category="Transportation" noOfEntries={2} />

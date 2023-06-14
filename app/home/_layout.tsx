@@ -1,8 +1,9 @@
 import { Tabs, usePathname } from "expo-router";
-import { Landmark, Wallet, BarChart3 } from "lucide-react-native";
+import { Landmark, Wallet, BarChart3, Plus } from "lucide-react-native";
 import { COLORS } from "../../resources/colors";
 import { BlurView } from "expo-blur";
 import { StatusBar } from "expo-status-bar";
+import { View } from "react-native";
 
 export default function Layout() {
   let pathname = usePathname();
@@ -24,7 +25,7 @@ export default function Layout() {
             fontSize: 12,
           },
           tabBarBackground: () => (
-            <BlurView intensity={60} tint="dark" style={{ flex: 1 }} />
+            <BlurView intensity={70} tint="dark" style={{ flex: 1 }} />
           ),
         }}>
         <Tabs.Screen
@@ -87,6 +88,36 @@ export default function Layout() {
                   opacity: pathname.endsWith("/insights") ? 1 : 0.4,
                 }}
               />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="create"
+          options={{
+            tabBarButton: (props) => (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>
+                <View
+                  style={{
+                    backgroundColor: COLORS.primaryBlue,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: 46,
+                    height: 46,
+                    borderRadius: 999,
+                    transform: [
+                      {
+                        translateY: 4,
+                      },
+                    ],
+                  }}>
+                  <Plus size={28} color="white" />
+                </View>
+              </View>
             ),
           }}
         />
