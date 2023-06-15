@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { Redirect, useRouter } from "expo-router";
 import { Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -9,7 +8,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import GradientCircle from "../resources/graphics/gradient-circle.png";
 import { ChevronRight } from "lucide-react-native";
 import * as SplashScreen from "expo-splash-screen";
-import { useFont } from "../hooks/useFont";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -40,7 +38,7 @@ export default () => {
         }}>
         <View style={{ alignItems: "flex-end" }}>
           <TouchableOpacity
-            onPress={() => router.push("/home/transactions")}
+            onPress={() => router.push("/home/budget")}
             style={{
               backgroundColor: COLORS.backgroundGray,
               paddingVertical: 6,
