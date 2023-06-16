@@ -56,7 +56,7 @@ export default () => {
               marginTop: 40,
               fontSize: 13,
             }}>
-            CATEGORIZED
+            SET BUDGETS
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
             <Entry
@@ -96,7 +96,7 @@ export default () => {
               marginTop: 40,
               fontSize: 13,
             }}>
-            UNCATEGORIZED
+            UNSET BUDGETS
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
             <Entry icon="🚕" category="Transportation" />

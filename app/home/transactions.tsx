@@ -52,7 +52,7 @@ export default () => {
                 fontSize: 14,
                 fontFamily: "TT Commons Medium",
               }}>
-              Dec 31 - Jan 30
+              This month
             </Text>
             <ChevronDown color={COLORS.foregroundLight} size={22} />
           </TouchableOpacity>

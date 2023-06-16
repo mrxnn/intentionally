@@ -12,9 +12,9 @@ import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 
 export default () => {
-  let isFirstTime = true;
+  let isFirstTime = false;
   let router = useRouter();
-  if (!isFirstTime) return <Redirect href="/home" />;
+  if (!isFirstTime) return <Redirect href="/home/transactions" />;
 
   return (
     <>
@@ -38,7 +38,7 @@ export default () => {
         }}>
         <View style={{ alignItems: "flex-end" }}>
           <TouchableOpacity
-            onPress={() => router.push("/home/budget")}
+            onPress={() => router.push("/home/transactions")}
             style={{
               backgroundColor: COLORS.backgroundGray,
               paddingVertical: 6,
