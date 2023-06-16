@@ -1,5 +1,4 @@
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   Text,
@@ -7,27 +6,12 @@ import {
   View,
 } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { LinearGradient } from "expo-linear-gradient";
-import GradientCircle from "../../resources/graphics/gradient-circle.png";
 import { Plus } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
 
 export default () => {
   return (
     <>
-      <LinearGradient
-        colors={[COLORS.backgroundBlueLight, COLORS.backgroundBlueDark]}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-        }}
-      />
-
-      <Image source={GradientCircle} style={{ position: "absolute" }} />
-
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView style={{ paddingHorizontal: 20, paddingTop: 20 }}>
           <View

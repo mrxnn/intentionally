@@ -1,5 +1,5 @@
 import { Stack, SplashScreen } from "expo-router";
-import { useFont } from "../hooks/useFont";
+import { useFont } from "../lib/useFont";
 
 export default function Layout() {
   let fontsLoaded = useFont();

@@ -3,10 +3,17 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Landmark, Wallet, BarChart3, Plus } from "lucide-react-native";
 import { COLORS } from "../resources/colors";
 import { usePathname, useRouter } from "expo-router";
+import { ReactNode, useState } from "react";
 
 export const Tabs = () => {
   let pathname = usePathname();
   let router = useRouter();
+  let [cachedPathname, setCachedPathname] = useState("");
+
+  let handleCreate = () => {
+    setCachedPathname(pathname);
+    router.push("/create");
+  };
 
   return (
     <BlurView
@@ -24,50 +31,29 @@ export const Tabs = () => {
         borderTopColor: COLORS.borderBlue,
         paddingBottom: 18,
       }}>
+      <TabItem
+        name="Transactions"
+        icon={<Landmark color={COLORS.foregroundLight} size={24} />}
+        url="/home/transactions"
+        pathname={pathname}
+        previousPathname={cachedPathname}
+      />
+      <TabItem
+        name="Budget"
+        icon={<Wallet color={COLORS.foregroundLight} size={24} />}
+        url="/home/budget"
+        pathname={pathname}
+        previousPathname={cachedPathname}
+      />
+      <TabItem
+        name="Insights"
+        icon={<BarChart3 color={COLORS.foregroundLight} size={24} />}
+        url="/home/insights"
+        pathname={pathname}
+        previousPathname={cachedPathname}
+      />
       <TouchableOpacity
-        onPress={() => router.push("/home/transactions")}
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          flex: 1,
-          opacity: pathname.endsWith("/transactions") ? 1 : 0.4,
-        }}>
-        <Landmark color={COLORS.foregroundLight} size={24} />
-        <Text
-          style={{ color: COLORS.foregroundLight, fontSize: 12, marginTop: 4 }}>
-          Transactions
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => router.push("/home/budget")}
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          flex: 1,
-          opacity: pathname.endsWith("/budget") ? 1 : 0.4,
-        }}>
-        <Wallet color={COLORS.foregroundLight} size={24} />
-        <Text
-          style={{ color: COLORS.foregroundLight, fontSize: 12, marginTop: 4 }}>
-          Budget
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => router.push("/home/insights")}
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          flex: 1,
-          opacity: pathname.endsWith("/insights") ? 1 : 0.4,
-        }}>
-        <BarChart3 color={COLORS.foregroundLight} size={24} />
-        <Text
-          style={{ color: COLORS.foregroundLight, fontSize: 12, marginTop: 4 }}>
-          Insights
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => router.push("/create")}
+        onPress={handleCreate}
         style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
         <View
           style={{
@@ -82,5 +68,40 @@ export const Tabs = () => {
         </View>
       </TouchableOpacity>
     </BlurView>
+  );
+};
+
+const TabItem = ({
+  name,
+  icon,
+  url,
+  pathname,
+  previousPathname,
+}: {
+  name: string;
+  icon: ReactNode;
+  url: string;
+  pathname: string;
+  previousPathname: string;
+}) => {
+  let router = useRouter();
+  let isActive =
+    pathname === url || (pathname === "/create" && previousPathname === url);
+
+  return (
+    <TouchableOpacity
+      onPress={() => router.push(url)}
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 1,
+        opacity: isActive ? 1 : 0.4,
+      }}>
+      {icon}
+      <Text
+        style={{ color: COLORS.foregroundLight, fontSize: 12, marginTop: 4 }}>
+        {name}
+      </Text>
+    </TouchableOpacity>
   );
 };

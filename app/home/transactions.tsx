@@ -1,10 +1,9 @@
 import { useRouter } from "expo-router";
-import { Text, View, Image, ScrollView } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native";
 import { COLORS } from "../../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
-import GradientCircle from "../../resources/graphics/gradient-circle.png";
 import { ChevronDown } from "lucide-react-native";
 
 export default () => {
@@ -12,19 +11,6 @@ export default () => {
 
   return (
     <>
-      <LinearGradient
-        colors={[COLORS.backgroundBlueLight, COLORS.backgroundBlueDark]}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-        }}
-      />
-
-      <Image source={GradientCircle} style={{ position: "absolute" }} />
-
       <SafeAreaView>
         <View
           style={{
@@ -40,11 +26,7 @@ export default () => {
               borderRadius: 999,
               flexDirection: "row",
               alignItems: "center",
-              transform: [
-                {
-                  translateY: 16,
-                },
-              ],
+              transform: [{ translateY: 16 }],
             }}>
             <Text
               style={{
