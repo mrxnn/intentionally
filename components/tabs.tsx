@@ -1,9 +1,17 @@
 import { BlurView } from "expo-blur";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+  StyleProp,
+  ViewStyle,
+} from "react-native";
 import { Landmark, Wallet, BarChart3, Plus } from "lucide-react-native";
 import { COLORS } from "../resources/colors";
 import { usePathname, useRouter } from "expo-router";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import * as Haptics from "expo-haptics";
 
 export const Tabs = () => {
   let pathname = usePathname();
@@ -12,25 +20,12 @@ export const Tabs = () => {
 
   let handleCreate = () => {
     setCachedPathname(pathname);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push("/create");
   };
 
   return (
-    <BlurView
-      intensity={70}
-      tint="dark"
-      style={{
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        height: 84,
-        flexDirection: "row",
-        paddingLeft: 12,
-        borderTopWidth: 1,
-        borderTopColor: COLORS.borderBlue,
-        paddingBottom: 18,
-      }}>
+    <TabContainer>
       <TabItem
         name="Transactions"
         icon={<Landmark color={COLORS.foregroundLight} size={24} />}
@@ -67,7 +62,7 @@ export const Tabs = () => {
           <Plus color={COLORS.foregroundLight} size={24} />
         </View>
       </TouchableOpacity>
-    </BlurView>
+    </TabContainer>
   );
 };
 
@@ -90,7 +85,10 @@ const TabItem = ({
 
   return (
     <TouchableOpacity
-      onPress={() => router.push(url)}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        router.push(url);
+      }}
       style={{
         justifyContent: "center",
         alignItems: "center",
@@ -103,5 +101,34 @@ const TabItem = ({
         {name}
       </Text>
     </TouchableOpacity>
+  );
+};
+
+const TabContainer = ({ children }: { children: ReactNode }) => {
+  let styles: StyleProp<ViewStyle> = {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 84,
+    flexDirection: "row",
+    paddingLeft: 12,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.borderBlue,
+    paddingBottom: 18,
+  };
+
+  if (Platform.OS === "ios") {
+    return (
+      <BlurView intensity={70} tint="dark" style={styles}>
+        {children}
+      </BlurView>
+    );
+  }
+
+  return (
+    <View style={{ ...styles, backgroundColor: COLORS.backgroundBlueDark }}>
+      {children}
+    </View>
   );
 };

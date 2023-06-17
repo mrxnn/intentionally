@@ -1,4 +1,5 @@
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   Text,
@@ -13,7 +14,11 @@ export default () => {
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+        <ScrollView
+          style={{
+            paddingHorizontal: 20,
+            paddingTop: Platform.OS === "ios" ? 20 : 40,
+          }}>
           <View
             style={{
               flexDirection: "row",
@@ -29,7 +34,7 @@ export default () => {
               Monthly budget
             </Text>
             <TouchableOpacity>
-              <Plus size={28} />
+              <Plus size={28} color={COLORS.primaryBlue} />
             </TouchableOpacity>
           </View>
           <Text
@@ -172,7 +177,6 @@ const Entry = ({
               activeStrokeWidth={8}
               inActiveStrokeOpacity={0.2}
               progressValueFontSize={13}
-              // showProgressValue={false}
               progressValueStyle={{ fontFamily: "TT Commons DemiBold" }}
             />
           </View>

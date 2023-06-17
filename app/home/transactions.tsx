@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { Text, View, ScrollView } from "react-native";
+import { Text, View, ScrollView, Platform } from "react-native";
 import { SafeAreaView } from "react-native";
 import { COLORS } from "../../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -26,7 +26,7 @@ export default () => {
               borderRadius: 999,
               flexDirection: "row",
               alignItems: "center",
-              transform: [{ translateY: 16 }],
+              transform: [{ translateY: Platform.OS === "ios" ? 16 : 40 }],
             }}>
             <Text
               style={{
@@ -258,7 +258,6 @@ const BarChart = () => {
         <Text
           style={{
             color: "white",
-            fontWeight: "800",
             fontFamily: "TT Commons Bold",
             fontSize: 18,
             marginTop: 2,
@@ -315,7 +314,6 @@ const BarChart = () => {
         <Text
           style={{
             color: "white",
-            fontWeight: "800",
             fontFamily: "TT Commons Bold",
             fontSize: 18,
           }}>
@@ -346,7 +344,6 @@ const BarChart = () => {
         <Text
           style={{
             color: "white",
-            fontWeight: "800",
             fontFamily: "TT Commons Bold",
             fontSize: 18,
           }}>

@@ -1,5 +1,5 @@
 import { Redirect, useRouter } from "expo-router";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -8,11 +8,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import GradientCircle from "../resources/graphics/gradient-circle.png";
 import { ChevronRight } from "lucide-react-native";
 import * as SplashScreen from "expo-splash-screen";
+import * as Haptics from "expo-haptics";
 
 SplashScreen.preventAutoHideAsync();
 
 export default () => {
-  let isFirstTime = false;
+  let isFirstTime = true;
   let router = useRouter();
   if (!isFirstTime) return <Redirect href="/home/transactions" />;
 
@@ -36,9 +37,16 @@ export default () => {
           flex: 1,
           paddingHorizontal: 20,
         }}>
-        <View style={{ alignItems: "flex-end" }}>
+        <View
+          style={{
+            alignItems: "flex-end",
+            marginTop: Platform.OS === "ios" ? 0 : 16,
+          }}>
           <TouchableOpacity
-            onPress={() => router.push("/home/transactions")}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              router.push("/home/transactions");
+            }}
             style={{
               backgroundColor: COLORS.backgroundGray,
               paddingVertical: 6,

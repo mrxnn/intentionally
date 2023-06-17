@@ -1,8 +1,12 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
+import { useRouter } from "expo-router";
+import { ChevronDown } from "lucide-react-native";
 
 export default () => {
+  let router = useRouter();
+
   return (
     <>
       <Background />
@@ -22,6 +26,27 @@ export default () => {
             }}>
             Create
           </Text>
+          <TouchableOpacity
+            onPress={() => router.back()}
+            style={{
+              backgroundColor: COLORS.backgroundGray,
+              paddingVertical: 6,
+              paddingHorizontal: 16,
+              borderRadius: 999,
+              flexDirection: "row",
+              alignItems: "center",
+              transform: [{ translateY: 16 }],
+            }}>
+            <Text
+              style={{
+                color: COLORS.foregroundLight,
+                fontSize: 14,
+                fontFamily: "TT Commons Medium",
+              }}>
+              Close
+            </Text>
+            <ChevronDown color={COLORS.foregroundLight} size={22} />
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     </>
