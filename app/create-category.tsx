@@ -1,21 +1,24 @@
-import {
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { ReactNode, useState } from "react";
+import { useRouter } from "expo-router";
+import { SmilePlus, Baseline, X, List } from "lucide-react-native";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
-import { useRouter } from "expo-router";
-import { Circle, SmilePlus, Baseline, X, List } from "lucide-react-native";
 
 export default () => {
   let router = useRouter();
+  let [name, setName] = useState("");
+  let [emoji, setEmoji] = useState("🍉");
+  let [type, setType] = useState("Income");
+
+  let handleCreate = () => {
+    console.log({ name, emoji, type });
+    router.back();
+  };
 
   return (
     <>
-      <Background showBubble={false} />
+      <Background showBubble={true} />
 
       <View
         style={{
@@ -43,7 +46,9 @@ export default () => {
           Create a new category
         </Text>
 
-        <View style={{ width: 40, justifyContent: "flex-end" }}>
+        <TouchableOpacity
+          onPress={handleCreate}
+          style={{ width: 40, justifyContent: "flex-end" }}>
           <Text
             style={{
               color: COLORS.primaryBlue,
@@ -53,7 +58,7 @@ export default () => {
             }}>
             SAVE
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       <View
@@ -62,99 +67,75 @@ export default () => {
           flex: 1,
           marginTop: 16,
         }}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingVertical: 20,
-            borderBottomColor: COLORS.borderBlue,
-            borderBottomWidth: 1,
-          }}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 18 }}>
-            <Baseline size={18} color={COLORS.foregroundLight} />
-            <Text
-              style={{
-                color: COLORS.foregroudLightInactive,
-                fontFamily: "TT Commons Regular",
-                fontSize: 16,
-              }}>
-              Category name
-            </Text>
-          </View>
-          <TextInput
-            placeholder="Required"
-            placeholderTextColor={COLORS.foregroudLightInactive}
-            style={{
-              fontSize: 16,
-              fontFamily: "TT Commons Medium",
-              color: COLORS.foregroundLight,
-            }}
-          />
-        </View>
-
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingVertical: 20,
-            borderBottomColor: COLORS.borderBlue,
-            borderBottomWidth: 1,
-          }}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 18 }}>
-            <SmilePlus size={18} color={COLORS.foregroundLight} />
-            <Text
-              style={{
-                color: COLORS.foregroudLightInactive,
-                fontFamily: "TT Commons Regular",
-                fontSize: 16,
-              }}>
-              Select an emoji
-            </Text>
-          </View>
-          <TextInput
-            value="🍉"
-            placeholder="Required"
-            placeholderTextColor={COLORS.foregroudLightInactive}
-            style={{
-              fontSize: 16,
-              fontFamily: "TT Commons Medium",
-              color: COLORS.foregroundLight,
-            }}
-          />
-        </View>
-
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            paddingVertical: 20,
-          }}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 18 }}>
-            <List size={18} color={COLORS.foregroundLight} />
-            <Text
-              style={{
-                color: COLORS.foregroudLightInactive,
-                fontFamily: "TT Commons Regular",
-                fontSize: 16,
-              }}>
-              Type of category
-            </Text>
-          </View>
-          <TextInput
-            value="Income"
-            placeholder="Required"
-            placeholderTextColor={COLORS.foregroudLightInactive}
-            style={{
-              fontSize: 16,
-              fontFamily: "TT Commons Medium",
-              color: COLORS.foregroundLight,
-            }}
-          />
-        </View>
+        <Field
+          title="Type"
+          icon={<List size={18} />}
+          value={type}
+          onChange={setType}
+        />
+        <Field
+          title="Name"
+          icon={<Baseline />}
+          value={name}
+          onChange={setName}
+        />
+        <Field
+          title="Emoji"
+          icon={<SmilePlus />}
+          value={emoji}
+          onChange={setEmoji}
+        />
       </View>
     </>
+  );
+};
+
+const Field = ({
+  value,
+  onChange,
+  title,
+  icon,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  title: string;
+  icon: ReactNode;
+}) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingVertical: 20,
+        borderBottomColor: COLORS.borderBlue,
+        borderBottomWidth: 1,
+      }}>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 18 }}>
+        {React.cloneElement(icon as any, {
+          size: 20,
+          color: COLORS.foregroundLight,
+        })}
+        <Text
+          style={{
+            color: COLORS.foregroudLightInactive,
+            fontFamily: "TT Commons Regular",
+            fontSize: 16,
+          }}>
+          {title}
+        </Text>
+      </View>
+      <TextInput
+        value={value}
+        onChangeText={onChange}
+        placeholder="Required"
+        placeholderTextColor={COLORS.foregroudLightInactive}
+        style={{
+          fontSize: 16,
+          fontFamily: "TT Commons Medium",
+          color: COLORS.foregroundLight,
+        }}
+      />
+    </View>
   );
 };
