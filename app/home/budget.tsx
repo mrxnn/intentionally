@@ -9,8 +9,12 @@ import {
 import { COLORS } from "../../resources/colors";
 import { Plus } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
+import { SearchBox } from "../../components/search";
+import { useState } from "react";
 
 export default () => {
+  let [search, setSearch] = useState("");
+
   return (
     <>
       <SafeAreaView style={{ flex: 1 }}>
@@ -37,6 +41,12 @@ export default () => {
               <Plus size={28} color={COLORS.primaryBlue} />
             </TouchableOpacity>
           </View>
+          <SearchBox
+            value={search}
+            onChange={setSearch}
+            placeholder="Search"
+            style={{ marginTop: 10 }}
+          />
           <Text
             style={{
               fontFamily: "TT Commons Medium",

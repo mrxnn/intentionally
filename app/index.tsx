@@ -45,7 +45,7 @@ export default () => {
           <TouchableOpacity
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              router.push("/home/transactions");
+              router.push("/home/budget");
             }}
             style={{
               backgroundColor: COLORS.backgroundGray,
