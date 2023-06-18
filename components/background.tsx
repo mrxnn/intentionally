@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { COLORS } from "../resources/colors";
 import GradientCircle from "../resources/graphics/gradient-circle.png";
 
-export const Background = () => {
+export const Background = ({ showBubble = true }: { showBubble?: boolean }) => {
   return (
     <>
       <LinearGradient
@@ -17,7 +17,9 @@ export const Background = () => {
         }}
       />
 
-      <Image source={GradientCircle} style={{ position: "absolute" }} />
+      {showBubble && (
+        <Image source={GradientCircle} style={{ position: "absolute" }} />
+      )}
     </>
   );
 };

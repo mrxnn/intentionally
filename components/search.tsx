@@ -25,12 +25,12 @@ export const SearchBox = ({
         style,
         {
           backgroundColor: COLORS.borderBlue,
-          borderRadius: 6,
+          borderRadius: 8,
           flexDirection: "row",
           alignItems: "center",
-          paddingVertical: 7,
+          paddingVertical: 9,
           paddingHorizontal: 11,
-          gap: 5,
+          gap: 6,
         },
       ]}>
       <Search size={15} color={COLORS.foregroudLightInactive} />

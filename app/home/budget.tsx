@@ -11,8 +11,10 @@ import { Plus } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { useState } from "react";
+import { useRouter } from "expo-router";
 
 export default () => {
+  let router = useRouter();
   let [search, setSearch] = useState("");
 
   return (
@@ -37,7 +39,7 @@ export default () => {
               }}>
               Monthly budget
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.push("/create-category")}>
               <Plus size={28} color={COLORS.primaryBlue} />
             </TouchableOpacity>
           </View>

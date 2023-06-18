@@ -15,7 +15,13 @@ export default function Layout() {
         headerShown: false,
       }}>
       <Stack.Screen
-        name="create"
+        name="create-transaction"
+        options={{
+          presentation: "modal",
+        }}
+      />
+      <Stack.Screen
+        name="create-category"
         options={{
           presentation: "modal",
         }}

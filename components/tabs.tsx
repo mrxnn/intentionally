@@ -21,7 +21,7 @@ export const Tabs = () => {
   let handleCreate = () => {
     setCachedPathname(pathname);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push("/create");
+    router.push("/create-transaction");
   };
 
   return (
@@ -81,7 +81,8 @@ const TabItem = ({
 }) => {
   let router = useRouter();
   let isActive =
-    pathname === url || (pathname === "/create" && previousPathname === url);
+    pathname === url ||
+    (pathname.startsWith("/create") && previousPathname === url);
 
   return (
     <TouchableOpacity
