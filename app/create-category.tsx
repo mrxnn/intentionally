@@ -7,9 +7,9 @@ import { Background } from "../components/background";
 
 export default () => {
   let router = useRouter();
-  let [name, setName] = useState("");
   let [emoji, setEmoji] = useState("🍉");
-  let [type, setType] = useState("Income");
+  let [name, setName] = useState("");
+  let [type, setType] = useState("");
 
   let handleCreate = () => {
     console.log({ name, emoji, type });
@@ -41,9 +41,10 @@ export default () => {
             fontFamily: "TT Commons DemiBold",
             textAlign: "center",
             flex: 1,
-            fontSize: 16,
+            fontSize: 14,
+            letterSpacing: 1,
           }}>
-          Create a new category
+          NEW CATEGORY
         </Text>
 
         <TouchableOpacity
@@ -63,79 +64,123 @@ export default () => {
 
       <View
         style={{
-          paddingHorizontal: 20,
-          flex: 1,
-          marginTop: 16,
+          paddingHorizontal: 16,
+          paddingVertical: 20,
         }}>
-        <Field
-          title="Type"
-          icon={<List size={18} />}
-          value={type}
-          onChange={setType}
-        />
-        <Field
-          title="Name"
-          icon={<Baseline />}
-          value={name}
-          onChange={setName}
-        />
-        <Field
-          title="Emoji"
-          icon={<SmilePlus />}
-          value={emoji}
-          onChange={setEmoji}
-        />
+        <View
+          style={{
+            backgroundColor: "#242B35",
+            borderRadius: 8,
+          }}>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderBottomColor: "#394049",
+              borderBottomWidth: 1,
+              paddingHorizontal: 12,
+              height: 54,
+            }}>
+            <View style={{}}>
+              <Text
+                style={{
+                  color: COLORS.foregroundLight,
+                  fontFamily: "TT Commons Medium",
+                  fontSize: 16,
+                }}>
+                Icon
+              </Text>
+              <Text
+                style={{
+                  color: COLORS.foregroudLightInactive,
+                  fontFamily: "TT Commons Regular",
+                }}>
+                Select an emoji
+              </Text>
+            </View>
+            <TextInput
+              value={emoji}
+              onChangeText={setEmoji}
+              placeholder="Required"
+              placeholderTextColor={COLORS.foregroudLightInactive}
+              style={{
+                fontFamily: "TT Commons Medium",
+                fontSize: 16,
+              }}
+            />
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderBottomColor: "#394049",
+              borderBottomWidth: 1,
+              paddingHorizontal: 12,
+              height: 54,
+            }}>
+            <Text
+              style={{
+                color: COLORS.foregroundLight,
+                fontFamily: "TT Commons Medium",
+                fontSize: 16,
+              }}>
+              Name
+            </Text>
+            <TextInput
+              value={name}
+              onChangeText={setName}
+              placeholder="Required"
+              placeholderTextColor={COLORS.foregroudLightInactive}
+              style={{
+                fontFamily: "TT Commons Medium",
+                fontSize: 16,
+                color: COLORS.foregroudLightInactive,
+              }}
+            />
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingHorizontal: 12,
+              height: 54,
+            }}>
+            <View style={{}}>
+              <Text
+                style={{
+                  color: COLORS.foregroundLight,
+                  fontFamily: "TT Commons Medium",
+                  fontSize: 16,
+                }}>
+                Type
+              </Text>
+              <Text
+                style={{
+                  color: COLORS.foregroudLightInactive,
+                  fontFamily: "TT Commons Regular",
+                }}>
+                Income / Expense
+              </Text>
+            </View>
+            <TextInput
+              value={type}
+              onChangeText={setType}
+              placeholder="Required"
+              placeholderTextColor={COLORS.foregroudLightInactive}
+              style={{
+                fontFamily: "TT Commons Medium",
+                fontSize: 16,
+                color: COLORS.foregroudLightInactive,
+              }}
+            />
+          </View>
+        </View>
       </View>
     </>
-  );
-};
-
-const Field = ({
-  value,
-  onChange,
-  title,
-  icon,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-  title: string;
-  icon: ReactNode;
-}) => {
-  return (
-    <View
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingVertical: 20,
-        borderBottomColor: COLORS.borderBlue,
-        borderBottomWidth: 1,
-      }}>
-      <View style={{ flexDirection: "row", alignItems: "center", gap: 18 }}>
-        {React.cloneElement(icon as any, {
-          size: 20,
-          color: COLORS.foregroundLight,
-        })}
-        <Text
-          style={{
-            color: COLORS.foregroudLightInactive,
-            fontFamily: "TT Commons Regular",
-            fontSize: 16,
-          }}>
-          {title}
-        </Text>
-      </View>
-      <TextInput
-        value={value}
-        onChangeText={onChange}
-        placeholder="Required"
-        placeholderTextColor={COLORS.foregroudLightInactive}
-        style={{
-          fontSize: 16,
-          fontFamily: "TT Commons Medium",
-          color: COLORS.foregroundLight,
-        }}
-      />
-    </View>
   );
 };

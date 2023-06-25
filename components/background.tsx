@@ -18,7 +18,10 @@ export const Background = ({ showBubble = true }: { showBubble?: boolean }) => {
       />
 
       {showBubble && (
-        <Image source={GradientCircle} style={{ position: "absolute" }} />
+        <Image
+          source={GradientCircle}
+          style={{ position: "absolute", opacity: 0.6 }}
+        />
       )}
     </>
   );
