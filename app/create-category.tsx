@@ -6,6 +6,9 @@ import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
 import { useCategoriesStore } from "../stores/global.store";
 
+const INPUT_HEIGHT = 60;
+const INPUT_PADDING = 16;
+
 export default () => {
   let router = useRouter();
   let emojiInputRef = useRef(null);
@@ -79,42 +82,87 @@ export default () => {
             backgroundColor: "#242B35",
             borderRadius: 8,
           }}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              borderBottomColor: "#394049",
-              borderBottomWidth: 1,
-              paddingHorizontal: 12,
-              height: 54,
-            }}>
-            <View style={{}}>
+          <View style={{}}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: INPUT_PADDING,
+                height: INPUT_HEIGHT,
+              }}>
+              <View>
+                <Text
+                  style={{
+                    color: COLORS.foregroundLight,
+                    fontFamily: "TT Commons Medium",
+                    fontSize: 16,
+                  }}>
+                  Icon
+                </Text>
+                <Text
+                  style={{
+                    color: COLORS.foregroudLightInactive,
+                    fontFamily: "TT Commons Regular",
+                  }}>
+                  Select an emoji
+                </Text>
+              </View>
+              <TextInput
+                ref={emojiInputRef}
+                value={icon}
+                onChangeText={setIcon}
+                placeholder="Required"
+                placeholderTextColor={COLORS.foregroudLightInactive}
+                style={{
+                  fontFamily: "TT Commons Medium",
+                  fontSize: 16,
+                }}
+              />
+            </View>
+            <View
+              style={{
+                height: 1,
+                marginLeft: INPUT_PADDING,
+                backgroundColor: "#394049",
+              }}
+            />
+          </View>
+
+          <View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                paddingHorizontal: INPUT_PADDING,
+                height: INPUT_HEIGHT,
+              }}>
               <Text
                 style={{
                   color: COLORS.foregroundLight,
                   fontFamily: "TT Commons Medium",
                   fontSize: 16,
                 }}>
-                Icon
+                Name
               </Text>
-              <Text
+              <TextInput
+                value={name}
+                onChangeText={setName}
+                placeholder="Required"
+                placeholderTextColor={COLORS.foregroudLightInactive}
                 style={{
+                  fontFamily: "TT Commons Medium",
+                  fontSize: 16,
                   color: COLORS.foregroudLightInactive,
-                  fontFamily: "TT Commons Regular",
-                }}>
-                Select an emoji
-              </Text>
+                }}
+              />
             </View>
-            <TextInput
-              ref={emojiInputRef}
-              value={icon}
-              onChangeText={setIcon}
-              placeholder="Required"
-              placeholderTextColor={COLORS.foregroudLightInactive}
+            <View
               style={{
-                fontFamily: "TT Commons Medium",
-                fontSize: 16,
+                height: 1,
+                marginLeft: INPUT_PADDING,
+                backgroundColor: "#394049",
               }}
             />
           </View>
@@ -124,39 +172,8 @@ export default () => {
               flexDirection: "row",
               justifyContent: "space-between",
               alignItems: "center",
-              borderBottomColor: "#394049",
-              borderBottomWidth: 1,
-              paddingHorizontal: 12,
-              height: 54,
-            }}>
-            <Text
-              style={{
-                color: COLORS.foregroundLight,
-                fontFamily: "TT Commons Medium",
-                fontSize: 16,
-              }}>
-              Name
-            </Text>
-            <TextInput
-              value={name}
-              onChangeText={setName}
-              placeholder="Required"
-              placeholderTextColor={COLORS.foregroudLightInactive}
-              style={{
-                fontFamily: "TT Commons Medium",
-                fontSize: 16,
-                color: COLORS.foregroudLightInactive,
-              }}
-            />
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingHorizontal: 12,
-              height: 54,
+              paddingHorizontal: INPUT_PADDING,
+              height: INPUT_HEIGHT,
             }}>
             <View style={{}}>
               <Text
