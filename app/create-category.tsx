@@ -1,20 +1,27 @@
-import React, { ReactNode, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "expo-router";
-import { SmilePlus, Baseline, X, List } from "lucide-react-native";
+import { X } from "lucide-react-native";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
+import { useCategoriesStore } from "../stores/global.store";
 
 export default () => {
   let router = useRouter();
-  let [emoji, setEmoji] = useState("🍉");
+  let emojiInputRef = useRef(null);
+  let addCategory = useCategoriesStore((state) => state.addCategory);
+  let [icon, setIcon] = useState("");
   let [name, setName] = useState("");
-  let [type, setType] = useState("");
+  let [type, setType] = useState<"Income" | "Expense">("Income");
 
   let handleCreate = () => {
-    console.log({ name, emoji, type });
+    addCategory({ icon, name, type });
     router.back();
   };
+
+  useEffect(() => {
+    emojiInputRef?.current?.focus();
+  }, []);
 
   return (
     <>
@@ -100,8 +107,9 @@ export default () => {
               </Text>
             </View>
             <TextInput
-              value={emoji}
-              onChangeText={setEmoji}
+              ref={emojiInputRef}
+              value={icon}
+              onChangeText={setIcon}
               placeholder="Required"
               placeholderTextColor={COLORS.foregroudLightInactive}
               style={{
@@ -169,7 +177,7 @@ export default () => {
             </View>
             <TextInput
               value={type}
-              onChangeText={setType}
+              onChangeText={(v) => setType(v as typeof type)}
               placeholder="Required"
               placeholderTextColor={COLORS.foregroudLightInactive}
               style={{

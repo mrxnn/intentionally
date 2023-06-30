@@ -12,10 +12,12 @@ import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { useState } from "react";
 import { useRouter } from "expo-router";
+import { useCategoriesStore } from "../../stores/global.store";
 
 export default () => {
   let router = useRouter();
   let [search, setSearch] = useState("");
+  let categories = useCategoriesStore((state) => state.categories);
 
   return (
     <>
@@ -100,6 +102,9 @@ export default () => {
             UNSET BUDGETS
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
+            {categories.map((category, idx) => (
+              <Entry key={idx} icon={category.icon} category={category.name} />
+            ))}
             <Entry icon="🚕" category="Transportation" />
             <Entry icon="💰" category="Salary" />
             <Entry icon="🌵" category="Environment" />
