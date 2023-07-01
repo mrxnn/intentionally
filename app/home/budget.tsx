@@ -12,12 +12,13 @@ import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import { useCategoriesStore } from "../../stores/global.store";
+import { useGlobalStore } from "../../stores/global.store";
 
 export default () => {
   let router = useRouter();
   let [search, setSearch] = useState("");
-  let categories = useCategoriesStore((state) => state.categories);
+  let categories = useGlobalStore((state) => state.categories);
+  let budgets = useGlobalStore((state) => state.budgets);
 
   return (
     <>
@@ -62,6 +63,17 @@ export default () => {
             SET BUDGETS
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
+            {budgets.map((budget, idx) => (
+              <Entry
+                key={idx}
+                icon={budget.category.icon}
+                category={budget.category.name}
+                totalBudget={budget.total}
+                totalSpent={budget.spent}
+                currency={budget.currency}
+              />
+            ))}
+
             <Entry
               icon="📜"
               category="Subscriptions"
@@ -207,7 +219,7 @@ const Entry = ({
               letterSpacing: 1,
               transform: [{ translateY: 8 }],
             }}>
-            SET
+            CREATE
           </Text>
         )}
       </View>

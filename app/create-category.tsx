@@ -4,7 +4,7 @@ import { X } from "lucide-react-native";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
-import { useCategoriesStore } from "../stores/global.store";
+import { useGlobalStore } from "../stores/global.store";
 
 const INPUT_HEIGHT = 60;
 const INPUT_PADDING = 16;
@@ -12,7 +12,7 @@ const INPUT_PADDING = 16;
 export default () => {
   let router = useRouter();
   let emojiInputRef = useRef(null);
-  let addCategory = useCategoriesStore((state) => state.addCategory);
+  let addCategory = useGlobalStore((state) => state.addCategory);
   let [icon, setIcon] = useState("");
   let [name, setName] = useState("");
   let [type, setType] = useState<"Income" | "Expense">("Income");
