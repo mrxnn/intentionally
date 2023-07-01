@@ -5,7 +5,7 @@ import { COLORS } from "../../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import { ChevronDown } from "lucide-react-native";
-import { useGlobalStore } from "../../stores/global.store";
+import { Transaction, useGlobalStore } from "../../stores/global.store";
 
 export default () => {
   let router = useRouter();
@@ -364,9 +364,13 @@ const BarChart = () => {
   );
 };
 
+type GroupedTransactions = {
+  [category: string]: Transaction[];
+};
+
 const Records = () => {
   let transactions = useGlobalStore((state) => state.transactions);
-  let grouped = transactions
+  let grouped: GroupedTransactions = transactions
     .filter((t) => t.datetime.getMonth() === 6)
     .reduce((acc, transaction) => {
       let category = transaction.category.name;
@@ -417,7 +421,7 @@ const Records = () => {
             key={category}
             icon={transactions[0].category.icon}
             category={category}
-            noOfEntries={(transactions as any[]).length}
+            noOfEntries={transactions.length}
           />
         ))}
       </View>
