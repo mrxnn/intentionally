@@ -7,18 +7,29 @@ import {
   View,
 } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { Plus } from "lucide-react-native";
+import { Plus, HelpCircle } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import { useGlobalStore } from "../../stores/global.store";
+import { Category, useGlobalStore } from "../../stores/global.store";
 
 export default () => {
   let router = useRouter();
   let [search, setSearch] = useState("");
   let categories = useGlobalStore((state) => state.categories);
-  let budgets = useGlobalStore((state) => state.budgets);
+  let budgets = categories
+    .filter((category) => category.budgets.length > 0)
+    .map((category) => {
+      let budget = category.budgets.find(
+        (b) => b.month === "7" && b.year === "2023"
+      );
+      return {
+        ...budget,
+        ...category,
+      };
+    })
+    .filter((bc) => bc.total);
 
   return (
     <>
@@ -63,45 +74,10 @@ export default () => {
             SET BUDGETS
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
-            {budgets.map((budget, idx) => (
-              <Entry
-                key={idx}
-                icon={budget.category.icon}
-                category={budget.category.name}
-                totalBudget={budget.total}
-                totalSpent={budget.spent}
-                currency={budget.currency}
-              />
-            ))}
-
-            <Entry
-              icon="📜"
-              category="Subscriptions"
-              totalBudget="500"
-              totalSpent="300"
-              currency="USD"
-            />
-            <Entry
-              icon="🍉"
-              category="Groceries"
-              totalBudget="1245"
-              totalSpent="934"
-              currency="USD"
-            />
-            <Entry
-              icon="🌵"
-              category="Environment"
-              totalBudget="234"
-              totalSpent="456"
-              currency="USD"
-            />
-            <Entry
-              icon="🚕"
-              category="Transportation"
-              totalBudget="727"
-              totalSpent="300"
-              currency="USD"
-            />
+            {(budgets.length > 0 &&
+              budgets.map((bc, idx) => <BudgetItem key={idx} {...bc} />)) || (
+              <Banner text="You haven't setup a budget for this month. To create a budget, pick the categories from below list." />
+            )}
           </View>
           <Text
             style={{
@@ -115,15 +91,8 @@ export default () => {
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
             {categories.map((category, idx) => (
-              <Entry key={idx} icon={category.icon} category={category.name} />
+              <CategoryItem key={idx} {...category} />
             ))}
-            <Entry icon="🚕" category="Transportation" />
-            <Entry icon="💰" category="Salary" />
-            <Entry icon="🌵" category="Environment" />
-            <Entry icon="🍄" category="Entertainment" />
-            <Entry icon="🍉" category="Groceries" />
-            <Entry icon="🚕" category="Transportation" />
-            <Entry icon="🌵" category="Environment" />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -131,27 +100,27 @@ export default () => {
   );
 };
 
-const Entry = ({
+const BudgetItem = ({
   icon,
-  category,
-  totalBudget,
-  totalSpent,
+  name,
+  total,
+  spent,
   currency,
 }: {
   icon: string;
-  category: string;
-  totalBudget?: string;
-  totalSpent?: string;
-  currency?: string;
+  name: string;
+  total: string;
+  spent: string;
+  currency: string;
 }) => {
-  let spentPercentage = (+totalSpent / +totalBudget) * 100;
+  let spentPercentage = (+spent / +total) * 100;
 
   return (
     <View
       style={{
         flexDirection: "row",
         columnGap: 20,
-        alignItems: totalBudget ? "center" : "flex-start",
+        alignItems: "center",
       }}>
       <Text style={{ paddingBottom: 8, fontSize: 22 }}>{icon}</Text>
       <View
@@ -162,55 +131,86 @@ const Entry = ({
           alignItems: "center",
           borderBottomColor: COLORS.borderBlue,
           borderBottomWidth: 1,
-          paddingBottom: totalBudget ? 8 : 20,
+          paddingBottom: 8,
         }}>
-        <View
-          style={{ gap: 3, transform: [{ translateY: totalBudget ? 0 : 6 }] }}>
+        <View style={{ gap: 3 }}>
           <Text
             style={{
               fontFamily: "TT Commons Regular",
               color: COLORS.foregroundLight,
               fontSize: 16,
             }}>
-            {category}
+            {name}
           </Text>
-          {totalBudget && (
-            <Text
-              style={{
-                fontFamily: "TT Commons Regular",
-                color: COLORS.foregroudLightInactive,
-              }}>
-              {totalSpent} / {totalBudget} {currency}
-            </Text>
-          )}
+          <Text
+            style={{
+              fontFamily: "TT Commons Regular",
+              color: COLORS.foregroudLightInactive,
+            }}>
+            {spent} / {total} {currency}
+          </Text>
         </View>
-        {totalBudget && totalSpent && (
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
-            <Text
-              style={{
-                color: COLORS.foregroudLightInactive,
-                fontSize: 12,
-                fontWeight: "500",
-              }}>
-              {/* {spentPercentage.toFixed()}% */}
-            </Text>
-            <Progress
-              radius={16}
-              value={spentPercentage}
-              activeStrokeColor={
-                spentPercentage > 100 ? COLORS.primaryRed : COLORS.primaryGreen
-              }
-              inActiveStrokeColor={
-                spentPercentage > 100 ? COLORS.primaryRed : COLORS.primaryGreen
-              }
-              activeStrokeWidth={8}
-              inActiveStrokeOpacity={0.2}
-              progressValueFontSize={13}
-              progressValueStyle={{ fontFamily: "TT Commons DemiBold" }}
-            />
-          </View>
-        )}
-        {!totalBudget && (
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+          <Text
+            style={{
+              color: COLORS.foregroudLightInactive,
+              fontSize: 12,
+              fontWeight: "500",
+            }}>
+            {/* {spentPercentage.toFixed()}% */}
+          </Text>
+          <Progress
+            radius={16}
+            value={spentPercentage}
+            activeStrokeColor={
+              spentPercentage > 100 ? COLORS.primaryRed : COLORS.primaryGreen
+            }
+            inActiveStrokeColor={
+              spentPercentage > 100 ? COLORS.primaryRed : COLORS.primaryGreen
+            }
+            activeStrokeWidth={8}
+            inActiveStrokeOpacity={0.2}
+            progressValueFontSize={13}
+            progressValueStyle={{ fontFamily: "TT Commons DemiBold" }}
+          />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const CategoryItem = ({ icon, name }: Category) => {
+  let router = useRouter();
+
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        columnGap: 20,
+        alignItems: "flex-start",
+      }}>
+      <Text style={{ paddingBottom: 8, fontSize: 22 }}>{icon}</Text>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderBottomColor: COLORS.borderBlue,
+          borderBottomWidth: 1,
+          paddingBottom: 20,
+        }}>
+        <View style={{ gap: 3, transform: [{ translateY: 6 }] }}>
+          <Text
+            style={{
+              fontFamily: "TT Commons Regular",
+              color: COLORS.foregroundLight,
+              fontSize: 16,
+            }}>
+            {name}
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => router.push("/create-budget")}>
           <Text
             style={{
               fontSize: 14,
@@ -221,8 +221,39 @@ const Entry = ({
             }}>
             CREATE
           </Text>
-        )}
+        </TouchableOpacity>
       </View>
+    </View>
+  );
+};
+
+const Banner = ({ text }: { text: string }) => {
+  return (
+    <View
+      style={{
+        backgroundColor: COLORS.backgroundGray,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderRadius: 8,
+        flexDirection: "row",
+        gap: 10,
+      }}>
+      <HelpCircle
+        size={20}
+        style={{
+          transform: [{ translateY: 8 }] as any,
+        }}
+      />
+      <Text
+        style={{
+          color: COLORS.foregroudLightInactive,
+          fontFamily: "TT Commons Medium",
+          fontSize: 16,
+          lineHeight: 20,
+          flex: 1,
+        }}>
+        {text}
+      </Text>
     </View>
   );
 };

@@ -26,6 +26,12 @@ export default function Layout() {
           presentation: "modal",
         }}
       />
+      <Stack.Screen
+        name="create-budget"
+        options={{
+          presentation: "modal",
+        }}
+      />
     </Stack>
   );
 }
