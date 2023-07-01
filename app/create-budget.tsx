@@ -5,7 +5,7 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
 import { Banner } from "../components/banner";
-import { format, getMonth, getYear } from "date-fns";
+import { format, getMonth, getYear, parse } from "date-fns";
 import { useGlobalStore } from "../stores/global.store";
 
 const INPUT_HEIGHT = 60;
@@ -16,17 +16,21 @@ export default () => {
   let { icon, name } = useLocalSearchParams();
   let amountInputRef = useRef(null);
   let [amount, setAmount] = useState("");
-  let [period, setPeriod] = useState(() => format(new Date(), "dd MMMM yyyy"));
+  let [period, setPeriod] = useState(() => format(new Date(), "MMMM yyyy"));
   let { addBudget } = useGlobalStore();
 
   let handleCreate = () => {
+    let month = getMonth(parse(period, "MMMM yyyy", new Date())) + 1;
+    let year = getYear(parse(period, "MMMM yyyy", new Date()));
+
     addBudget(name as string, {
       total: amount,
       spent: "0",
       currency: "USD",
-      month: "7",
-      year: "2023",
+      month: month.toString(),
+      year: year.toString(),
     });
+
     router.back();
   };
 
