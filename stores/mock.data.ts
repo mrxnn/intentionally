@@ -1,4 +1,4 @@
-import { Budget, Category } from "./global.store";
+import { Budget, Category, Transaction } from "./global.store";
 
 export let categories: Category[] = [
   {
@@ -41,5 +41,26 @@ export let categories: Category[] = [
         year: "2023",
       },
     ],
+  },
+];
+
+export let transactions: Transaction[] = [
+  {
+    description: "",
+    amount: "35",
+    datetime: new Date(),
+    category: categories[0],
+  },
+  {
+    description: "",
+    amount: "50",
+    datetime: new Date(),
+    category: categories[0],
+  },
+  {
+    description: "",
+    amount: "19",
+    datetime: new Date(),
+    category: categories[2],
   },
 ];

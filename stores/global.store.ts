@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { categories } from "./mock.data";
+import { categories, transactions } from "./mock.data";
 
 export type Budget = {
   total: string;
@@ -16,14 +16,24 @@ export type Category = {
   budgets?: Budget[]; // one per month
 };
 
+export type Transaction = {
+  description: string;
+  category: Category;
+  amount: string;
+  datetime: Date;
+};
+
 type GlobalState = {
   categories: Category[];
+  transactions: Transaction[];
   addCategory: (category: Category) => void;
   addBudget: (categoryName: string, budget: Budget) => void;
+  addTransaction: (transaction: Transaction) => void;
 };
 
 export let useGlobalStore = create<GlobalState>((set) => ({
   categories: [...categories],
+  transactions: [...transactions],
 
   // Add new category
   addCategory: (category: Category) =>
@@ -67,4 +77,10 @@ export let useGlobalStore = create<GlobalState>((set) => ({
         categories: updatedCategories,
       };
     }),
+
+  // Add a new transaction
+  addTransaction: (transaction: Transaction) =>
+    set((state) => ({
+      transactions: [...state.transactions, transaction],
+    })),
 }));

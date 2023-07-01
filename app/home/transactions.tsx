@@ -5,6 +5,7 @@ import { COLORS } from "../../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import { ChevronDown } from "lucide-react-native";
+import { useGlobalStore } from "../../stores/global.store";
 
 export default () => {
   let router = useRouter();
@@ -364,6 +365,16 @@ const BarChart = () => {
 };
 
 const Records = () => {
+  let transactions = useGlobalStore((state) => state.transactions);
+  let grouped = transactions
+    .filter((t) => t.datetime.getMonth() === 6)
+    .reduce((acc, transaction) => {
+      let category = transaction.category.name;
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(transaction);
+      return acc;
+    }, {});
+
   return (
     <View style={{ paddingHorizontal: 20, marginTop: 40 }}>
       <View
@@ -401,14 +412,14 @@ const Records = () => {
         </TouchableOpacity>
       </View>
       <View style={{ rowGap: 24, marginTop: 28 }}>
-        <Record icon="📜" category="Subscriptions" noOfEntries={4} />
-        <Record icon="🍉" category="Groceries" noOfEntries={9} />
-        <Record icon="🚕" category="Transportation" noOfEntries={2} />
-        <Record icon="💰" category="Salary" noOfEntries={2} />
-        <Record icon="🌵" category="Environment" noOfEntries={4} />
-        <Record icon="🍄" category="Entertainment" noOfEntries={2} />
-        <Record icon="🍉" category="Groceries" noOfEntries={9} />
-        <Record icon="🚕" category="Transportation" noOfEntries={2} />
+        {Object.entries(grouped).map(([category, transactions]) => (
+          <Record
+            key={category}
+            icon={transactions[0].category.icon}
+            category={category}
+            noOfEntries={(transactions as any[]).length}
+          />
+        ))}
       </View>
     </View>
   );
