@@ -10,6 +10,7 @@
     "@expo-google-fonts/space-grotesk": "^0.2.3",
     "@expo/vector-icons": "^13.0.0",
     "@types/react": "~18.0.27",
+    "date-fns": "^2.30.0",
     "expo": "^48.0.7",
     "expo-blur": "~12.2.2",
     "expo-constants": "~14.2.1",

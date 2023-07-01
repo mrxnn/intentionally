@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useRouter } from "expo-router";
 import {
   Platform,
   SafeAreaView,
@@ -7,19 +9,18 @@ import {
   View,
 } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { Plus, HelpCircle } from "lucide-react-native";
+import { Plus, HelpCircle, AlertCircle } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
-import { useState } from "react";
-import { useRouter } from "expo-router";
 import { Category, useGlobalStore } from "../../stores/global.store";
+import { Banner } from "../../components/banner";
 
 export default () => {
   let router = useRouter();
   let [search, setSearch] = useState("");
   let categories = useGlobalStore((state) => state.categories);
   let budgets = categories
-    .filter((category) => category.budgets.length > 0)
+    .filter((category) => category.budgets?.length > 0)
     .map((category) => {
       let budget = category.budgets.find(
         (b) => b.month === "7" && b.year === "2023"
@@ -76,7 +77,10 @@ export default () => {
           <View style={{ rowGap: 24, marginTop: 28 }}>
             {(budgets.length > 0 &&
               budgets.map((bc, idx) => <BudgetItem key={idx} {...bc} />)) || (
-              <Banner text="You haven't setup a budget for this month. To create a budget, pick the categories from below list." />
+              <Banner
+                title="Setup a budget"
+                text="You haven't setup a budget for this month. To create a budget, pick the categories from the list below."
+              />
             )}
           </View>
           <Text
@@ -210,7 +214,16 @@ const CategoryItem = ({ icon, name }: Category) => {
             {name}
           </Text>
         </View>
-        <TouchableOpacity onPress={() => router.push("/create-budget")}>
+        <TouchableOpacity
+          onPress={() =>
+            router.push({
+              pathname: "/create-budget",
+              params: {
+                icon,
+                name,
+              },
+            })
+          }>
           <Text
             style={{
               fontSize: 14,
@@ -223,37 +236,6 @@ const CategoryItem = ({ icon, name }: Category) => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
-  );
-};
-
-const Banner = ({ text }: { text: string }) => {
-  return (
-    <View
-      style={{
-        backgroundColor: COLORS.backgroundGray,
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderRadius: 8,
-        flexDirection: "row",
-        gap: 10,
-      }}>
-      <HelpCircle
-        size={20}
-        style={{
-          transform: [{ translateY: 8 }] as any,
-        }}
-      />
-      <Text
-        style={{
-          color: COLORS.foregroudLightInactive,
-          fontFamily: "TT Commons Medium",
-          fontSize: 16,
-          lineHeight: 20,
-          flex: 1,
-        }}>
-        {text}
-      </Text>
     </View>
   );
 };
