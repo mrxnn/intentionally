@@ -1,365 +1,67 @@
-import { useRouter } from "expo-router";
-import { Text, View, ScrollView, Platform } from "react-native";
+import { Text, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native";
 import { COLORS } from "../../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { LinearGradient } from "expo-linear-gradient";
-import { ChevronDown } from "lucide-react-native";
 import { Transaction, useGlobalStore } from "../../stores/global.store";
+import { TransactionBreakdownChart } from "../../components/transaction-breakdown-chart";
+import { ChevronDown } from "lucide-react-native";
 
 export default () => {
-  let router = useRouter();
-
   return (
-    <>
-      <SafeAreaView>
-        <View
-          style={{
-            alignItems: "flex-end",
-            paddingHorizontal: 20,
-          }}>
-          <TouchableOpacity
-            onPress={() => router.push("/home")}
-            style={{
-              backgroundColor: COLORS.backgroundGray,
-              paddingVertical: 6,
-              paddingHorizontal: 16,
-              borderRadius: 999,
-              flexDirection: "row",
-              alignItems: "center",
-              transform: [{ translateY: Platform.OS === "ios" ? 16 : 40 }],
-            }}>
-            <Text
-              style={{
-                color: COLORS.foregroundLight,
-                fontSize: 14,
-                fontFamily: "TT Commons Medium",
-              }}>
-              This month
-            </Text>
-            <ChevronDown color={COLORS.foregroundLight} size={22} />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-
-      <ScrollView style={{ marginTop: -90 }}>
-        <BarChart />
+    <SafeAreaView>
+      <Header />
+      <ScrollView>
+        <TransactionBreakdownChart income={1500} expenses={900} />
         <Records />
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 
-const BarChart = () => {
+const Header = () => {
   return (
     <View
       style={{
+        paddingHorizontal: 16,
         flexDirection: "row",
+        alignItems: "center",
         justifyContent: "space-between",
-        paddingRight: 40,
+        marginTop: 16,
       }}>
-      <View style={{ gap: 28, position: "relative" }}>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", opacity: 0.1 }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            1.8
-          </Text>
-        </View>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", opacity: 0.2 }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            1.6
-          </Text>
-        </View>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", opacity: 0.4 }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            1.4
-          </Text>
-        </View>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", opacity: 0.7 }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            1.2
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            1.0
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            0.8
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            0.6
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            0.4
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            0.2
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              height: 1,
-              width: 12,
-              backgroundColor: "gray",
-              marginRight: 6,
-            }}
-          />
-          <Text
-            style={{
-              color: "gray",
-              fontSize: 12,
-              fontFamily: "TT Commons Medium",
-            }}>
-            0.0
-          </Text>
-        </View>
-      </View>
-
-      <View style={{ alignSelf: "flex-end", marginLeft: 12 }}>
+      <Text
+        style={{
+          color: COLORS.foregroundLight,
+          fontSize: 20,
+          fontFamily: "TT Commons Medium",
+          letterSpacing: -0.4,
+        }}>
+        Transactions
+      </Text>
+      <TouchableOpacity
+        onPress={() => {}}
+        style={{
+          backgroundColor: COLORS.backgroundGray,
+          paddingVertical: 6,
+          paddingHorizontal: 12,
+          borderRadius: 8,
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 4,
+        }}>
         <Text
           style={{
-            color: "white",
+            color: COLORS.foregroundLight,
             fontSize: 14,
-            letterSpacing: -0.4,
-            opacity: 0.6,
             fontFamily: "TT Commons Medium",
           }}>
-          Income
+          November
         </Text>
-        <Text
-          style={{
-            color: "white",
-            fontFamily: "TT Commons Bold",
-            fontSize: 18,
-            marginTop: 2,
-          }}>
-          $12,000
-        </Text>
-        <View
-          style={{ position: "relative", marginTop: 8, overflow: "hidden" }}>
-          <LinearGradient
-            colors={[COLORS.primaryBlue, "#0F4888"]}
-            style={{
-              width: 80,
-              height: 240,
-              borderRadius: 4,
-            }}
-          />
-          <View
-            style={{
-              position: "absolute",
-              top: -10,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              overflow: "hidden",
-              gap: 8,
-            }}>
-            {Array.from({ length: 40 }).map((el, i) => (
-              <View
-                key={i}
-                style={{
-                  width: "200%",
-                  height: 1,
-                  backgroundColor: "#C7CBD0",
-                  opacity: 0.8,
-                  transform: [{ rotate: "-12deg" }, { translateX: -4 }],
-                }}
-              />
-            ))}
-          </View>
-        </View>
-      </View>
-
-      <View style={{ alignSelf: "flex-end" }}>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 14,
-            letterSpacing: -0.4,
-            opacity: 0.6,
-            fontFamily: "TT Commons Medium",
-          }}>
-          Expenses
-        </Text>
-        <Text
-          style={{
-            color: "white",
-            fontFamily: "TT Commons Bold",
-            fontSize: 18,
-          }}>
-          $8,200
-        </Text>
-        <View
-          style={{
-            width: 80,
-            height: 180,
-            backgroundColor: COLORS.borderBlue,
-            borderRadius: 4,
-            marginTop: 8,
-          }}
+        <ChevronDown
+          size={16}
+          color={COLORS.foregroundLight}
+          style={{ transform: [{ translateY: 1.2 }] as any }}
         />
-      </View>
-
-      <View style={{ alignSelf: "flex-end" }}>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 14,
-            letterSpacing: -0.4,
-            opacity: 0.6,
-            fontFamily: "TT Commons Medium",
-          }}>
-          Balance
-        </Text>
-        <Text
-          style={{
-            color: "white",
-            fontFamily: "TT Commons Bold",
-            fontSize: 18,
-          }}>
-          $1,130
-        </Text>
-        <View
-          style={{
-            width: 80,
-            height: 40,
-            backgroundColor: COLORS.borderBlue,
-            borderRadius: 4,
-            marginTop: 8,
-          }}
-        />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -400,8 +102,8 @@ const Records = () => {
           style={{
             backgroundColor: COLORS.backgroundGray,
             paddingVertical: 6,
-            paddingHorizontal: 16,
-            borderRadius: 999,
+            paddingHorizontal: 12,
+            borderRadius: 8,
             flexDirection: "row",
             alignItems: "center",
           }}>
