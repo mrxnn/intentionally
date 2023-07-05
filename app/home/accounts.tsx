@@ -8,15 +8,12 @@ import {
 import { COLORS } from "../../resources/colors";
 import { Account, useGlobalStore } from "../../stores/global.store";
 import { ChevronDown, CreditCard } from "lucide-react-native";
-import { Background } from "../../components/background";
 
 export default () => {
   let accounts = useGlobalStore((state) => state.accounts);
 
   return (
     <>
-      <Background />
-
       <SafeAreaView>
         <Header />
         <ScrollView style={{ paddingHorizontal: 16, marginTop: 20 }}>
@@ -44,8 +41,8 @@ const Header = () => {
       <Text
         style={{
           color: COLORS.foregroundLight,
-          fontSize: 20,
-          fontFamily: "TT Commons Medium",
+          fontSize: 24,
+          fontFamily: "TT Commons DemiBold",
           letterSpacing: -0.4,
         }}>
         Accounts
@@ -108,14 +105,14 @@ export const AccountCard = (account: Account) => {
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "TT Commons Medium",
+            fontFamily: "TT Commons DemiBold",
           }}>
           {account.amount}
         </Text>
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "TT Commons Medium",
+            fontFamily: "TT Commons DemiBold",
           }}>
           {account.currency}
         </Text>

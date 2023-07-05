@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { Plus, HelpCircle, AlertCircle } from "lucide-react-native";
+import { Plus } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { Category, useGlobalStore } from "../../stores/global.store";
@@ -49,8 +49,8 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 20,
-                fontFamily: "TT Commons Medium",
+                fontSize: 24,
+                fontFamily: "TT Commons DemiBold",
                 letterSpacing: -0.4,
               }}>
               Monthly budget
@@ -63,7 +63,7 @@ export default () => {
             value={search}
             onChange={setSearch}
             placeholder="Search"
-            style={{ marginTop: 16 }}
+            style={{ marginTop: 10 }}
           />
           <Text
             style={{

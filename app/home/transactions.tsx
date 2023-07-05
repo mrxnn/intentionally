@@ -31,11 +31,11 @@ const Header = () => {
       <Text
         style={{
           color: COLORS.foregroundLight,
-          fontSize: 20,
-          fontFamily: "TT Commons Medium",
+          fontSize: 24,
+          fontFamily: "TT Commons DemiBold",
           letterSpacing: -0.4,
         }}>
-        Transactions
+        Dashboard
       </Text>
       <TouchableOpacity
         onPress={() => {}}
@@ -172,10 +172,10 @@ const Record = ({
         <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "TT Commons DemiBold",
               color: COLORS.foregroudLightInactive,
             }}>
-            21 €
+            {(Math.random() * 120).toFixed()} €
           </Text>
           <View
             style={{
@@ -189,10 +189,10 @@ const Record = ({
           />
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "TT Commons DemiBold",
               color: COLORS.foregroundLight,
             }}>
-            $ 18
+            {(Math.random() * 120).toFixed()} USD
           </Text>
         </View>
       </View>
