@@ -55,8 +55,8 @@ export const Banner = ({
           <Text
             style={{
               color: COLORS.foregroundLight,
-              fontFamily: "TT Commons DemiBold",
-              fontSize: 16,
+              fontFamily: "Circular Bold",
+              fontSize: 14,
               lineHeight: 20,
               marginBottom: 4,
             }}>
@@ -66,8 +66,8 @@ export const Banner = ({
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "TT Commons Medium",
-            fontSize: 16,
+            fontFamily: "Circular Medium",
+            fontSize: 14,
             lineHeight: 20,
           }}>
           {text}

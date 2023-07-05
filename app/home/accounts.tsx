@@ -41,8 +41,8 @@ const Header = () => {
       <Text
         style={{
           color: COLORS.foregroundLight,
-          fontSize: 24,
-          fontFamily: "TT Commons DemiBold",
+          fontSize: 20,
+          fontFamily: "Circular Bold",
           letterSpacing: -0.4,
         }}>
         Accounts
@@ -61,8 +61,8 @@ const Header = () => {
         <Text
           style={{
             color: COLORS.foregroundLight,
-            fontSize: 14,
-            fontFamily: "TT Commons Medium",
+            fontSize: 13,
+            fontFamily: "Circular Medium",
           }}>
           By date
         </Text>
@@ -90,8 +90,8 @@ export const AccountCard = (account: Account) => {
       <Text
         style={{
           color: COLORS.foregroundLight,
-          fontFamily: "TT Commons Medium",
-          fontSize: 16,
+          fontFamily: "Circular Medium",
+          fontSize: 14,
         }}>
         {account.name}
       </Text>
@@ -105,14 +105,16 @@ export const AccountCard = (account: Account) => {
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "TT Commons DemiBold",
+            fontFamily: "Circular Bold",
+            fontSize: 13,
           }}>
           {account.amount}
         </Text>
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "TT Commons DemiBold",
+            fontFamily: "Circular Bold",
+            fontSize: 13,
           }}>
           {account.currency}
         </Text>

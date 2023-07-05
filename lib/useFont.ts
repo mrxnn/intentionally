@@ -29,6 +29,13 @@ export const useFont = () => {
     "TT Commons Black": require("../resources/fonts/tt-commons/TT-Commons-Black.otf"),
   });
 
+  let [circular] = useFonts({
+    "Circular Book": require("../resources/fonts/circular/book.otf"),
+    "Circular Medium": require("../resources/fonts/circular/medium.otf"),
+    "Circular Bold": require("../resources/fonts/circular/bold.otf"),
+    "Circular Black": require("../resources/fonts/circular/black.otf"),
+  });
+
   const [interLoaded] = useInter({
     Inter_400Regular,
     Inter_500Medium,
@@ -44,5 +51,5 @@ export const useFont = () => {
     SpaceGrotesk_700Bold,
   });
 
-  return fontsLoaded && interLoaded && spaceGroteskLoaded;
+  return fontsLoaded && interLoaded && spaceGroteskLoaded && circular;
 };

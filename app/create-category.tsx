@@ -48,10 +48,10 @@ export default () => {
         <Text
           style={{
             color: COLORS.foregroundLight,
-            fontFamily: "TT Commons DemiBold",
+            fontFamily: "Circular Bold",
             textAlign: "center",
             flex: 1,
-            fontSize: 14,
+            fontSize: 12,
             letterSpacing: 1,
           }}>
           NEW CATEGORY
@@ -63,9 +63,10 @@ export default () => {
           <Text
             style={{
               color: COLORS.primaryBlue,
-              fontFamily: "TT Commons DemiBold",
+              fontFamily: "Circular Bold",
               textAlign: "right",
               letterSpacing: 1,
+              fontSize: 12,
             }}>
             SAVE
           </Text>
@@ -95,15 +96,16 @@ export default () => {
                 <Text
                   style={{
                     color: COLORS.foregroundLight,
-                    fontFamily: "TT Commons Medium",
-                    fontSize: 16,
+                    fontFamily: "Circular Medium",
+                    fontSize: 14,
                   }}>
                   Icon
                 </Text>
                 <Text
                   style={{
                     color: COLORS.foregroudLightInactive,
-                    fontFamily: "TT Commons Regular",
+                    fontFamily: "Circular Book",
+                    fontSize: 13,
                   }}>
                   Select an emoji
                 </Text>
@@ -115,8 +117,8 @@ export default () => {
                 placeholder="Required"
                 placeholderTextColor={COLORS.foregroudLightInactive}
                 style={{
-                  fontFamily: "TT Commons Medium",
-                  fontSize: 16,
+                  fontFamily: "Circular Medium",
+                  fontSize: 14,
                 }}
               />
             </View>
@@ -141,8 +143,8 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "TT Commons Medium",
-                  fontSize: 16,
+                  fontFamily: "Circular Medium",
+                  fontSize: 14,
                 }}>
                 Name
               </Text>
@@ -152,8 +154,8 @@ export default () => {
                 placeholder="Required"
                 placeholderTextColor={COLORS.foregroudLightInactive}
                 style={{
-                  fontFamily: "TT Commons Medium",
-                  fontSize: 16,
+                  fontFamily: "Circular Medium",
+                  fontSize: 14,
                   color: COLORS.foregroudLightInactive,
                 }}
               />
@@ -179,15 +181,16 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "TT Commons Medium",
-                  fontSize: 16,
+                  fontFamily: "Circular Medium",
+                  fontSize: 14,
                 }}>
                 Type
               </Text>
               <Text
                 style={{
                   color: COLORS.foregroudLightInactive,
-                  fontFamily: "TT Commons Regular",
+                  fontFamily: "Circular Book",
+                  fontSize: 13,
                 }}>
                 Income / Expense
               </Text>
@@ -198,8 +201,8 @@ export default () => {
               placeholder="Required"
               placeholderTextColor={COLORS.foregroudLightInactive}
               style={{
-                fontFamily: "TT Commons Medium",
-                fontSize: 16,
+                fontFamily: "Circular Medium",
+                fontSize: 14,
                 color: COLORS.foregroudLightInactive,
               }}
             />

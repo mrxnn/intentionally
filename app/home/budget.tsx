@@ -49,8 +49,8 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 24,
-                fontFamily: "TT Commons DemiBold",
+                fontSize: 20,
+                fontFamily: "Circular Bold",
                 letterSpacing: -0.4,
               }}>
               Monthly budget
@@ -67,11 +67,11 @@ export default () => {
           />
           <Text
             style={{
-              fontFamily: "TT Commons Medium",
+              fontFamily: "Circular Medium",
               color: COLORS.primaryBlue,
               letterSpacing: 1,
               marginTop: 40,
-              fontSize: 13,
+              fontSize: 12,
             }}>
             SET BUDGETS
           </Text>
@@ -86,11 +86,11 @@ export default () => {
           </View>
           <Text
             style={{
-              fontFamily: "TT Commons Medium",
+              fontFamily: "Circular Medium",
               color: COLORS.primaryBlue,
               letterSpacing: 1,
               marginTop: 40,
-              fontSize: 13,
+              fontSize: 12,
             }}>
             UNSET BUDGETS
           </Text>
@@ -141,16 +141,17 @@ const BudgetItem = ({
         <View style={{ gap: 3 }}>
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "Circular Book",
               color: COLORS.foregroundLight,
-              fontSize: 16,
+              fontSize: 15,
             }}>
             {name}
           </Text>
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "Circular Book",
               color: COLORS.foregroudLightInactive,
+              fontSize: 13,
             }}>
             {spent} / {total} {currency}
           </Text>
@@ -176,7 +177,7 @@ const BudgetItem = ({
             activeStrokeWidth={8}
             inActiveStrokeOpacity={0.2}
             progressValueFontSize={13}
-            progressValueStyle={{ fontFamily: "TT Commons DemiBold" }}
+            progressValueStyle={{ fontFamily: "Circular Bold" }}
           />
         </View>
       </View>
@@ -208,9 +209,9 @@ const CategoryItem = ({ icon, name }: Category) => {
         <View style={{ gap: 3, transform: [{ translateY: 6 }] }}>
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "Circular Book",
               color: COLORS.foregroundLight,
-              fontSize: 16,
+              fontSize: 14,
             }}>
             {name}
           </Text>
@@ -227,8 +228,8 @@ const CategoryItem = ({ icon, name }: Category) => {
           }>
           <Text
             style={{
-              fontSize: 14,
-              fontFamily: "TT Commons Medium",
+              fontSize: 12,
+              fontFamily: "Circular Medium",
               color: COLORS.primaryBlue,
               letterSpacing: 1,
               transform: [{ translateY: 8 }],

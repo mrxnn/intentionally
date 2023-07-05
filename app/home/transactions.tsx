@@ -31,11 +31,11 @@ const Header = () => {
       <Text
         style={{
           color: COLORS.foregroundLight,
-          fontSize: 24,
-          fontFamily: "TT Commons DemiBold",
+          fontSize: 20,
+          fontFamily: "Circular Bold",
           letterSpacing: -0.4,
         }}>
-        Dashboard
+        Breakdown
       </Text>
       <TouchableOpacity
         onPress={() => {}}
@@ -51,8 +51,8 @@ const Header = () => {
         <Text
           style={{
             color: COLORS.foregroundLight,
-            fontSize: 14,
-            fontFamily: "TT Commons Medium",
+            fontSize: 13,
+            fontFamily: "Circular Medium",
           }}>
           November
         </Text>
@@ -91,9 +91,10 @@ const Records = () => {
         }}>
         <Text
           style={{
-            fontFamily: "TT Commons Medium",
+            fontFamily: "Circular Medium",
             color: COLORS.foregroundLight,
             letterSpacing: 1,
+            fontSize: 12,
           }}>
           TODAY
         </Text>
@@ -110,8 +111,8 @@ const Records = () => {
           <Text
             style={{
               color: COLORS.foregroundLight,
-              fontSize: 14,
-              fontFamily: "TT Commons Medium",
+              fontSize: 13,
+              fontFamily: "Circular Medium",
             }}>
             Sort By: Time
           </Text>
@@ -155,16 +156,17 @@ const Record = ({
         <View style={{ gap: 3 }}>
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "Circular Book",
               color: COLORS.foregroundLight,
-              fontSize: 16,
+              fontSize: 14,
             }}>
             {category}
           </Text>
           <Text
             style={{
-              fontFamily: "TT Commons Regular",
+              fontFamily: "Circular Book",
               color: COLORS.foregroudLightInactive,
+              fontSize: 13,
             }}>
             {noOfEntries} Entries
           </Text>
@@ -172,8 +174,9 @@ const Record = ({
         <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
           <Text
             style={{
-              fontFamily: "TT Commons DemiBold",
+              fontFamily: "Circular Medium",
               color: COLORS.foregroudLightInactive,
+              fontSize: 13,
             }}>
             {(Math.random() * 120).toFixed()} €
           </Text>
@@ -189,8 +192,9 @@ const Record = ({
           />
           <Text
             style={{
-              fontFamily: "TT Commons DemiBold",
+              fontFamily: "Circular Medium",
               color: COLORS.foregroundLight,
+              fontSize: 13,
             }}>
             {(Math.random() * 120).toFixed()} USD
           </Text>

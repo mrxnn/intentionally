@@ -58,8 +58,8 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 14,
-                fontFamily: "TT Commons Medium",
+                fontSize: 12,
+                fontFamily: "Circular Medium",
               }}>
               Skip
             </Text>
@@ -78,15 +78,15 @@ export default () => {
               textTransform: "uppercase",
               fontSize: 12,
               letterSpacing: 1,
-              fontFamily: "TT Commons Medium",
+              fontFamily: "Circular Medium",
               marginBottom: 16,
             }}>
             Getting Started
           </Text>
           <Text
             style={{
-              fontSize: 24,
-              fontFamily: "TT Commons DemiBold",
+              fontSize: 20,
+              fontFamily: "Circular Bold",
               letterSpacing: -0.4,
               color: COLORS.foregroundLight,
               marginBottom: 8,
@@ -107,9 +107,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 16,
+                fontSize: 15,
                 letterSpacing: -0.4,
-                fontFamily: "TT Commons Regular",
+                fontFamily: "Circular Book",
               }}>
               Setup your profile
             </Text>
@@ -128,9 +128,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 16,
+                fontSize: 15,
                 letterSpacing: -0.4,
-                fontFamily: "TT Commons Regular",
+                fontFamily: "Circular Book",
               }}>
               Customize categories
             </Text>
@@ -147,9 +147,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 16,
+                fontSize: 15,
                 letterSpacing: -0.4,
-                fontFamily: "TT Commons Regular",
+                fontFamily: "Circular Book",
               }}>
               Create your first goal
             </Text>

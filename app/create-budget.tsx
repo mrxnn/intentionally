@@ -60,10 +60,10 @@ export default () => {
         <Text
           style={{
             color: COLORS.foregroundLight,
-            fontFamily: "TT Commons DemiBold",
+            fontFamily: "Circular Bold",
             textAlign: "center",
             flex: 1,
-            fontSize: 14,
+            fontSize: 12,
             letterSpacing: 1,
             textTransform: "uppercase",
           }}>
@@ -76,9 +76,10 @@ export default () => {
           <Text
             style={{
               color: COLORS.primaryBlue,
-              fontFamily: "TT Commons DemiBold",
+              fontFamily: "Circular Bold",
               textAlign: "right",
               letterSpacing: 1,
+              fontSize: 12,
             }}>
             CREATE
           </Text>
@@ -107,8 +108,8 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "TT Commons Medium",
-                  fontSize: 16,
+                  fontFamily: "Circular Medium",
+                  fontSize: 14,
                 }}>
                 Amount
               </Text>
@@ -122,15 +123,15 @@ export default () => {
                   placeholder="0"
                   placeholderTextColor={COLORS.foregroudLightInactive}
                   style={{
-                    fontFamily: "TT Commons Medium",
-                    fontSize: 16,
+                    fontFamily: "Circular Medium",
+                    fontSize: 14,
                     color: COLORS.foregroudLightInactive,
                   }}
                 />
                 <Text
                   style={{
-                    fontFamily: "TT Commons Medium",
-                    fontSize: 16,
+                    fontFamily: "Circular Medium",
+                    fontSize: 14,
                     color: COLORS.primaryBlue,
                   }}>
                   USD
@@ -158,15 +159,16 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "TT Commons Medium",
-                  fontSize: 16,
+                  fontFamily: "Circular Medium",
+                  fontSize: 14,
                 }}>
                 Month
               </Text>
               <Text
                 style={{
                   color: COLORS.foregroudLightInactive,
-                  fontFamily: "TT Commons Regular",
+                  fontFamily: "Circular Book",
+                  fontSize: 13,
                 }}>
                 Month / Year
               </Text>
@@ -177,8 +179,8 @@ export default () => {
               placeholder="Required"
               placeholderTextColor={COLORS.foregroudLightInactive}
               style={{
-                fontFamily: "TT Commons Medium",
-                fontSize: 16,
+                fontFamily: "Circular Medium",
+                fontSize: 14,
                 color: COLORS.foregroudLightInactive,
               }}
             />

@@ -21,7 +21,7 @@ export default () => {
           <Text
             style={{
               color: COLORS.foregroundLight,
-              fontFamily: "TT Commons DemiBold",
+              fontFamily: "Circular Bold",
               fontSize: 24,
             }}>
             Create
@@ -41,7 +41,7 @@ export default () => {
               style={{
                 color: COLORS.foregroundLight,
                 fontSize: 14,
-                fontFamily: "TT Commons Medium",
+                fontFamily: "Circular Medium",
               }}>
               Close
             </Text>

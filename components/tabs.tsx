@@ -103,7 +103,7 @@ const TabItem = ({
       ]}>
       {icon}
       <Text
-        style={{ color: COLORS.foregroundLight, fontSize: 12, marginTop: 4 }}>
+        style={{ color: COLORS.foregroundLight, fontSize: 11, marginTop: 4 }}>
         {name}
       </Text>
     </TouchableOpacity>

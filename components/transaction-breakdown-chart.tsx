@@ -88,18 +88,18 @@ const Bar = ({
       <Text
         style={{
           color: "white",
-          fontSize: 14,
+          fontSize: 12,
           letterSpacing: -0.4,
           opacity: 0.6,
-          fontFamily: "TT Commons Medium",
+          fontFamily: "Circular Medium",
         }}>
         {title}
       </Text>
       <Text
         style={{
           color: "white",
-          fontFamily: "TT Commons Bold",
-          fontSize: 18,
+          fontFamily: "Circular Black",
+          fontSize: 16,
           marginBottom: 8,
         }}>
         ${value}
@@ -171,8 +171,8 @@ const Measurement = ({ value }: { value: string }) => {
       <Text
         style={{
           color: COLORS.foregroudLightInactive,
-          fontFamily: "TT Commons Medium",
-          fontSize: 12,
+          fontFamily: "Circular Medium",
+          fontSize: 10,
         }}>
         {value}
       </Text>
