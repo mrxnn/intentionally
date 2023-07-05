@@ -1,14 +1,7 @@
 import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { COLORS } from "../resources/colors";
-
-const formatNumber = (n) => {
-  if (n < 1e3) return n;
-  if (n >= 1e3 && n < 1e6) return +(n / 1e3).toFixed(1) + "K";
-  if (n >= 1e6 && n < 1e9) return +(n / 1e6).toFixed(1) + "M";
-  if (n >= 1e9 && n < 1e12) return +(n / 1e9).toFixed(1) + "B";
-  if (n >= 1e12) return +(n / 1e12).toFixed(1) + "T";
-};
+import { formatNumber } from "../lib/utils";
 
 export const TransactionBreakdownChart = ({
   income,
@@ -29,29 +22,35 @@ export const TransactionBreakdownChart = ({
   let scaledBalance = (income - expenses) * scaleFactor;
 
   // Calculate the range and interval for the Y-axis values
-  const range = Math.ceil(maxValue); // Round up to the nearest multiple of 7
-  const interval = range / 6;
+  let range = Math.ceil(maxValue); // Round up to the nearest multiple of 7
+  let interval = range / 6;
 
   // Generate the Y-axis values
-  const axisLabels = Array.from({ length: 7 }).map((_, index) =>
+  let axisLabels = Array.from({ length: 7 }).map((_, index) =>
     Math.round(interval * index)
   );
+
+  // Add one extra to the axis label list just for the UI
+  let extra1 = axisLabels[axisLabels.length - 1];
+  let extra2 = axisLabels[axisLabels.length - 2];
+  let difference = extra1 - extra2;
+  axisLabels.push(extra1 + difference);
 
   return (
     <View
       style={{
+        marginLeft: 16,
+        marginTop: 20,
+        paddingLeft: 8,
         flexDirection: "row",
         backgroundColor: "#212832",
-        marginLeft: 16,
-        marginTop: 16,
-        paddingLeft: 8,
-        paddingTop: 28,
         borderTopLeftRadius: 12,
         borderBottomLeftRadius: 12,
       }}>
       <View
         style={{
           flex: 1,
+          paddingTop: 16,
           flexDirection: "row",
           justifyContent: "space-evenly",
         }}>
@@ -64,7 +63,7 @@ export const TransactionBreakdownChart = ({
         style={{
           justifyContent: "space-between",
           flexDirection: "column-reverse",
-          marginTop: 40,
+          paddingTop: 12,
         }}>
         {axisLabels.map((value, idx) => (
           <Measurement key={idx} value={formatNumber(value)} />

@@ -82,7 +82,7 @@ const Records = () => {
     }, {});
 
   return (
-    <View style={{ paddingHorizontal: 20, marginTop: 40 }}>
+    <View style={{ paddingHorizontal: 20, marginTop: 32 }}>
       <View
         style={{
           flexDirection: "row",

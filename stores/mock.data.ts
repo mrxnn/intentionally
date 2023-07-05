@@ -63,4 +63,10 @@ export let transactions: Transaction[] = [
     datetime: new Date(),
     category: categories[2],
   },
+  {
+    description: "",
+    amount: "19",
+    datetime: new Date(),
+    category: categories[1],
+  },
 ];
