@@ -6,6 +6,11 @@ export let accounts: Account[] = [
     amount: 850,
     currency: "USD",
   },
+  {
+    name: "Debit Card",
+    amount: 12000,
+    currency: "USD",
+  },
 ];
 
 export let categories: Category[] = [

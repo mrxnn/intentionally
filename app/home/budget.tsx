@@ -38,7 +38,7 @@ export default () => {
         <ScrollView
           style={{
             paddingHorizontal: 20,
-            paddingTop: Platform.OS === "ios" ? 20 : 40,
+            paddingTop: Platform.OS === "ios" ? 16 : 40,
           }}>
           <View
             style={{
@@ -49,8 +49,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontFamily: "TT Commons DemiBold",
-                fontSize: 24,
+                fontSize: 20,
+                fontFamily: "TT Commons Medium",
+                letterSpacing: -0.4,
               }}>
               Monthly budget
             </Text>
@@ -62,7 +63,7 @@ export default () => {
             value={search}
             onChange={setSearch}
             placeholder="Search"
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 16 }}
           />
           <Text
             style={{

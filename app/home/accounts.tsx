@@ -6,30 +6,28 @@ import {
   View,
 } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { useGlobalStore } from "../../stores/global.store";
-import { ChevronDown } from "lucide-react-native";
+import { Account, useGlobalStore } from "../../stores/global.store";
+import { ChevronDown, CreditCard } from "lucide-react-native";
+import { Background } from "../../components/background";
 
 export default () => {
   let accounts = useGlobalStore((state) => state.accounts);
 
   return (
-    <SafeAreaView>
-      <Header />
-      <ScrollView>
-        <View style={{ paddingHorizontal: 16 }}>
-          {accounts.map((account, idx) => (
-            <Text
-              key={idx}
-              style={{
-                color: COLORS.foregroundLight,
-                fontFamily: "TT Commons Regular",
-              }}>
-              {JSON.stringify(account, null, 2)}
-            </Text>
-          ))}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      <Background />
+
+      <SafeAreaView>
+        <Header />
+        <ScrollView style={{ paddingHorizontal: 16, marginTop: 20 }}>
+          <View style={{ borderRadius: 8, backgroundColor: "#212832" }}>
+            {accounts.map((account, idx) => (
+              <AccountCard key={idx} {...account} />
+            ))}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 };
 
@@ -50,7 +48,7 @@ const Header = () => {
           fontFamily: "TT Commons Medium",
           letterSpacing: -0.4,
         }}>
-        Transactions
+        Accounts
       </Text>
       <TouchableOpacity
         onPress={() => {}}
@@ -69,7 +67,7 @@ const Header = () => {
             fontSize: 14,
             fontFamily: "TT Commons Medium",
           }}>
-          November
+          By date
         </Text>
         <ChevronDown
           size={16}
@@ -77,6 +75,51 @@ const Header = () => {
           style={{ transform: [{ translateY: 1.2 }] as any }}
         />
       </TouchableOpacity>
+    </View>
+  );
+};
+
+export const AccountCard = (account: Account) => {
+  return (
+    <View
+      style={{
+        paddingHorizontal: 16,
+        paddingVertical: 14,
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+      }}>
+      <CreditCard size={20} />
+      <Text
+        style={{
+          color: COLORS.foregroundLight,
+          fontFamily: "TT Commons Medium",
+          fontSize: 16,
+        }}>
+        {account.name}
+      </Text>
+      <View
+        style={{
+          marginLeft: "auto",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 4,
+        }}>
+        <Text
+          style={{
+            color: COLORS.foregroudLightInactive,
+            fontFamily: "TT Commons Medium",
+          }}>
+          {account.amount}
+        </Text>
+        <Text
+          style={{
+            color: COLORS.foregroudLightInactive,
+            fontFamily: "TT Commons Medium",
+          }}>
+          {account.currency}
+        </Text>
+      </View>
     </View>
   );
 };

@@ -24,8 +24,8 @@ export default () => {
     let year = getYear(parse(period, "MMMM yyyy", new Date()));
 
     addBudget(name as string, {
-      total: amount,
-      spent: "0",
+      total: +amount,
+      spent: 0,
       currency: "USD",
       month: month.toString(),
       year: year.toString(),
