@@ -2,6 +2,7 @@ import { Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { COLORS } from "../resources/colors";
 import { formatNumber } from "../lib/utils";
+import { FONTS } from "../resources/fonts";
 
 export const TransactionBreakdownChart = ({
   income,
@@ -91,14 +92,14 @@ const Bar = ({
           fontSize: 12,
           letterSpacing: -0.4,
           opacity: 0.6,
-          fontFamily: "Circular Medium",
+          fontFamily: FONTS.primaryMedium,
         }}>
         {title}
       </Text>
       <Text
         style={{
           color: "white",
-          fontFamily: "Circular Black",
+          fontFamily: FONTS.primaryBold,
           fontSize: 16,
           marginBottom: 8,
         }}>
@@ -171,7 +172,7 @@ const Measurement = ({ value }: { value: string }) => {
       <Text
         style={{
           color: COLORS.foregroudLightInactive,
-          fontFamily: "Circular Medium",
+          fontFamily: FONTS.primaryMedium,
           fontSize: 10,
         }}>
         {value}

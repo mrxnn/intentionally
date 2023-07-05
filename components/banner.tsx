@@ -1,6 +1,7 @@
 import { View, Text, StyleProp, ViewStyle } from "react-native";
 import { AlertCircle, HelpCircle } from "lucide-react-native";
 import { COLORS } from "../resources/colors";
+import { FONTS } from "../resources/fonts";
 
 export const Banner = ({
   type = "info",
@@ -55,7 +56,7 @@ export const Banner = ({
           <Text
             style={{
               color: COLORS.foregroundLight,
-              fontFamily: "Circular Bold",
+              fontFamily: FONTS.primarySemibold,
               fontSize: 14,
               lineHeight: 20,
               marginBottom: 4,
@@ -66,7 +67,7 @@ export const Banner = ({
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "Circular Medium",
+            fontFamily: FONTS.primaryMedium,
             fontSize: 14,
             lineHeight: 20,
           }}>

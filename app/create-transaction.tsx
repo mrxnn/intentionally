@@ -3,6 +3,7 @@ import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
 import { useRouter } from "expo-router";
 import { ChevronDown } from "lucide-react-native";
+import { FONTS } from "../resources/fonts";
 
 export default () => {
   let router = useRouter();
@@ -21,7 +22,7 @@ export default () => {
           <Text
             style={{
               color: COLORS.foregroundLight,
-              fontFamily: "Circular Bold",
+              fontFamily: FONTS.primarySemibold,
               fontSize: 24,
             }}>
             Create
@@ -41,7 +42,7 @@ export default () => {
               style={{
                 color: COLORS.foregroundLight,
                 fontSize: 14,
-                fontFamily: "Circular Medium",
+                fontFamily: FONTS.primaryMedium,
               }}>
               Close
             </Text>

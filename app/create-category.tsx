@@ -5,6 +5,7 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
 import { useGlobalStore } from "../stores/global.store";
+import { FONTS } from "../resources/fonts";
 
 const INPUT_HEIGHT = 60;
 const INPUT_PADDING = 16;
@@ -48,7 +49,7 @@ export default () => {
         <Text
           style={{
             color: COLORS.foregroundLight,
-            fontFamily: "Circular Bold",
+            fontFamily: FONTS.primarySemibold,
             textAlign: "center",
             flex: 1,
             fontSize: 12,
@@ -63,7 +64,7 @@ export default () => {
           <Text
             style={{
               color: COLORS.primaryBlue,
-              fontFamily: "Circular Bold",
+              fontFamily: FONTS.primarySemibold,
               textAlign: "right",
               letterSpacing: 1,
               fontSize: 12,
@@ -96,7 +97,7 @@ export default () => {
                 <Text
                   style={{
                     color: COLORS.foregroundLight,
-                    fontFamily: "Circular Medium",
+                    fontFamily: FONTS.primaryMedium,
                     fontSize: 14,
                   }}>
                   Icon
@@ -104,7 +105,7 @@ export default () => {
                 <Text
                   style={{
                     color: COLORS.foregroudLightInactive,
-                    fontFamily: "Circular Book",
+                    fontFamily: FONTS.primaryRegular,
                     fontSize: 13,
                   }}>
                   Select an emoji
@@ -117,7 +118,7 @@ export default () => {
                 placeholder="Required"
                 placeholderTextColor={COLORS.foregroudLightInactive}
                 style={{
-                  fontFamily: "Circular Medium",
+                  fontFamily: FONTS.primaryMedium,
                   fontSize: 14,
                 }}
               />
@@ -143,7 +144,7 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "Circular Medium",
+                  fontFamily: FONTS.primaryMedium,
                   fontSize: 14,
                 }}>
                 Name
@@ -154,7 +155,7 @@ export default () => {
                 placeholder="Required"
                 placeholderTextColor={COLORS.foregroudLightInactive}
                 style={{
-                  fontFamily: "Circular Medium",
+                  fontFamily: FONTS.primaryMedium,
                   fontSize: 14,
                   color: COLORS.foregroudLightInactive,
                 }}
@@ -181,7 +182,7 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "Circular Medium",
+                  fontFamily: FONTS.primaryMedium,
                   fontSize: 14,
                 }}>
                 Type
@@ -189,7 +190,7 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroudLightInactive,
-                  fontFamily: "Circular Book",
+                  fontFamily: FONTS.primaryRegular,
                   fontSize: 13,
                 }}>
                 Income / Expense
@@ -201,7 +202,7 @@ export default () => {
               placeholder="Required"
               placeholderTextColor={COLORS.foregroudLightInactive}
               style={{
-                fontFamily: "Circular Medium",
+                fontFamily: FONTS.primaryMedium,
                 fontSize: 14,
                 color: COLORS.foregroudLightInactive,
               }}

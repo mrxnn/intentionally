@@ -12,6 +12,7 @@ import { COLORS } from "../resources/colors";
 import { usePathname, useRouter } from "expo-router";
 import { ReactNode, useState } from "react";
 import * as Haptics from "expo-haptics";
+import { FONTS } from "../resources/fonts";
 
 export const Tabs = () => {
   let pathname = usePathname();
@@ -103,7 +104,12 @@ const TabItem = ({
       ]}>
       {icon}
       <Text
-        style={{ color: COLORS.foregroundLight, fontSize: 11, marginTop: 4 }}>
+        style={{
+          color: COLORS.foregroundLight,
+          fontSize: 12,
+          marginTop: 4,
+          fontFamily: FONTS.primaryRegular,
+        }}>
         {name}
       </Text>
     </TouchableOpacity>

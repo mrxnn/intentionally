@@ -14,6 +14,7 @@ import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { Category, useGlobalStore } from "../../stores/global.store";
 import { Banner } from "../../components/banner";
+import { FONTS } from "../../resources/fonts";
 
 export default () => {
   let router = useRouter();
@@ -50,7 +51,7 @@ export default () => {
               style={{
                 color: COLORS.foregroundLight,
                 fontSize: 20,
-                fontFamily: "Circular Bold",
+                fontFamily: FONTS.primarySemibold,
                 letterSpacing: -0.4,
               }}>
               Monthly budget
@@ -67,7 +68,7 @@ export default () => {
           />
           <Text
             style={{
-              fontFamily: "Circular Medium",
+              fontFamily: FONTS.primaryMedium,
               color: COLORS.primaryBlue,
               letterSpacing: 1,
               marginTop: 40,
@@ -86,7 +87,7 @@ export default () => {
           </View>
           <Text
             style={{
-              fontFamily: "Circular Medium",
+              fontFamily: FONTS.primaryMedium,
               color: COLORS.primaryBlue,
               letterSpacing: 1,
               marginTop: 40,
@@ -141,7 +142,7 @@ const BudgetItem = ({
         <View style={{ gap: 3 }}>
           <Text
             style={{
-              fontFamily: "Circular Book",
+              fontFamily: FONTS.primaryRegular,
               color: COLORS.foregroundLight,
               fontSize: 15,
             }}>
@@ -149,7 +150,7 @@ const BudgetItem = ({
           </Text>
           <Text
             style={{
-              fontFamily: "Circular Book",
+              fontFamily: FONTS.primaryRegular,
               color: COLORS.foregroudLightInactive,
               fontSize: 13,
             }}>
@@ -177,7 +178,7 @@ const BudgetItem = ({
             activeStrokeWidth={8}
             inActiveStrokeOpacity={0.2}
             progressValueFontSize={13}
-            progressValueStyle={{ fontFamily: "Circular Bold" }}
+            progressValueStyle={{ fontFamily: FONTS.primarySemibold }}
           />
         </View>
       </View>
@@ -209,7 +210,7 @@ const CategoryItem = ({ icon, name }: Category) => {
         <View style={{ gap: 3, transform: [{ translateY: 6 }] }}>
           <Text
             style={{
-              fontFamily: "Circular Book",
+              fontFamily: FONTS.primaryRegular,
               color: COLORS.foregroundLight,
               fontSize: 14,
             }}>
@@ -229,7 +230,7 @@ const CategoryItem = ({ icon, name }: Category) => {
           <Text
             style={{
               fontSize: 12,
-              fontFamily: "Circular Medium",
+              fontFamily: FONTS.primaryMedium,
               color: COLORS.primaryBlue,
               letterSpacing: 1,
               transform: [{ translateY: 8 }],

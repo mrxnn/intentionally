@@ -7,6 +7,7 @@ import { Background } from "../components/background";
 import { Banner } from "../components/banner";
 import { format, getMonth, getYear, parse } from "date-fns";
 import { useGlobalStore } from "../stores/global.store";
+import { FONTS } from "../resources/fonts";
 
 const INPUT_HEIGHT = 60;
 const INPUT_PADDING = 16;
@@ -60,7 +61,7 @@ export default () => {
         <Text
           style={{
             color: COLORS.foregroundLight,
-            fontFamily: "Circular Bold",
+            fontFamily: FONTS.primarySemibold,
             textAlign: "center",
             flex: 1,
             fontSize: 12,
@@ -76,7 +77,7 @@ export default () => {
           <Text
             style={{
               color: COLORS.primaryBlue,
-              fontFamily: "Circular Bold",
+              fontFamily: FONTS.primarySemibold,
               textAlign: "right",
               letterSpacing: 1,
               fontSize: 12,
@@ -108,7 +109,7 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "Circular Medium",
+                  fontFamily: FONTS.primaryMedium,
                   fontSize: 14,
                 }}>
                 Amount
@@ -123,14 +124,14 @@ export default () => {
                   placeholder="0"
                   placeholderTextColor={COLORS.foregroudLightInactive}
                   style={{
-                    fontFamily: "Circular Medium",
+                    fontFamily: FONTS.primaryMedium,
                     fontSize: 14,
                     color: COLORS.foregroudLightInactive,
                   }}
                 />
                 <Text
                   style={{
-                    fontFamily: "Circular Medium",
+                    fontFamily: FONTS.primaryMedium,
                     fontSize: 14,
                     color: COLORS.primaryBlue,
                   }}>
@@ -159,7 +160,7 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroundLight,
-                  fontFamily: "Circular Medium",
+                  fontFamily: FONTS.primaryMedium,
                   fontSize: 14,
                 }}>
                 Month
@@ -167,7 +168,7 @@ export default () => {
               <Text
                 style={{
                   color: COLORS.foregroudLightInactive,
-                  fontFamily: "Circular Book",
+                  fontFamily: FONTS.primaryRegular,
                   fontSize: 13,
                 }}>
                 Month / Year
@@ -179,7 +180,7 @@ export default () => {
               placeholder="Required"
               placeholderTextColor={COLORS.foregroudLightInactive}
               style={{
-                fontFamily: "Circular Medium",
+                fontFamily: FONTS.primaryMedium,
                 fontSize: 14,
                 color: COLORS.foregroudLightInactive,
               }}

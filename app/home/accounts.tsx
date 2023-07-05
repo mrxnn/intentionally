@@ -8,6 +8,7 @@ import {
 import { COLORS } from "../../resources/colors";
 import { Account, useGlobalStore } from "../../stores/global.store";
 import { ChevronDown, CreditCard } from "lucide-react-native";
+import { FONTS } from "../../resources/fonts";
 
 export default () => {
   let accounts = useGlobalStore((state) => state.accounts);
@@ -42,7 +43,7 @@ const Header = () => {
         style={{
           color: COLORS.foregroundLight,
           fontSize: 20,
-          fontFamily: "Circular Bold",
+          fontFamily: FONTS.primarySemibold,
           letterSpacing: -0.4,
         }}>
         Accounts
@@ -62,7 +63,7 @@ const Header = () => {
           style={{
             color: COLORS.foregroundLight,
             fontSize: 13,
-            fontFamily: "Circular Medium",
+            fontFamily: FONTS.primaryMedium,
           }}>
           By date
         </Text>
@@ -90,7 +91,7 @@ export const AccountCard = (account: Account) => {
       <Text
         style={{
           color: COLORS.foregroundLight,
-          fontFamily: "Circular Medium",
+          fontFamily: FONTS.primaryMedium,
           fontSize: 14,
         }}>
         {account.name}
@@ -105,7 +106,7 @@ export const AccountCard = (account: Account) => {
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "Circular Bold",
+            fontFamily: FONTS.primarySemibold,
             fontSize: 13,
           }}>
           {account.amount}
@@ -113,7 +114,7 @@ export const AccountCard = (account: Account) => {
         <Text
           style={{
             color: COLORS.foregroudLightInactive,
-            fontFamily: "Circular Bold",
+            fontFamily: FONTS.primarySemibold,
             fontSize: 13,
           }}>
           {account.currency}

@@ -5,6 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Transaction, useGlobalStore } from "../../stores/global.store";
 import { TransactionBreakdownChart } from "../../components/transaction-breakdown-chart";
 import { ChevronDown } from "lucide-react-native";
+import { FONTS } from "../../resources/fonts";
 
 export default () => {
   return (
@@ -32,7 +33,7 @@ const Header = () => {
         style={{
           color: COLORS.foregroundLight,
           fontSize: 20,
-          fontFamily: "Circular Bold",
+          fontFamily: FONTS.primarySemibold,
           letterSpacing: -0.4,
         }}>
         Breakdown
@@ -52,7 +53,7 @@ const Header = () => {
           style={{
             color: COLORS.foregroundLight,
             fontSize: 13,
-            fontFamily: "Circular Medium",
+            fontFamily: FONTS.primaryMedium,
           }}>
           November
         </Text>
@@ -91,7 +92,7 @@ const Records = () => {
         }}>
         <Text
           style={{
-            fontFamily: "Circular Medium",
+            fontFamily: FONTS.primaryMedium,
             color: COLORS.foregroundLight,
             letterSpacing: 1,
             fontSize: 12,
@@ -112,7 +113,7 @@ const Records = () => {
             style={{
               color: COLORS.foregroundLight,
               fontSize: 13,
-              fontFamily: "Circular Medium",
+              fontFamily: FONTS.primaryMedium,
             }}>
             Sort By: Time
           </Text>
@@ -156,7 +157,7 @@ const Record = ({
         <View style={{ gap: 3 }}>
           <Text
             style={{
-              fontFamily: "Circular Book",
+              fontFamily: FONTS.primaryRegular,
               color: COLORS.foregroundLight,
               fontSize: 14,
             }}>
@@ -164,7 +165,7 @@ const Record = ({
           </Text>
           <Text
             style={{
-              fontFamily: "Circular Book",
+              fontFamily: FONTS.primaryRegular,
               color: COLORS.foregroudLightInactive,
               fontSize: 13,
             }}>
@@ -174,7 +175,7 @@ const Record = ({
         <View style={{ flexDirection: "row", gap: 16, alignItems: "center" }}>
           <Text
             style={{
-              fontFamily: "Circular Medium",
+              fontFamily: FONTS.primaryMedium,
               color: COLORS.foregroudLightInactive,
               fontSize: 13,
             }}>
@@ -192,7 +193,7 @@ const Record = ({
           />
           <Text
             style={{
-              fontFamily: "Circular Medium",
+              fontFamily: FONTS.primaryMedium,
               color: COLORS.foregroundLight,
               fontSize: 13,
             }}>

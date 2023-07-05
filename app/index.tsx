@@ -9,6 +9,7 @@ import GradientCircle from "../resources/graphics/gradient-circle.png";
 import { ChevronRight } from "lucide-react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Haptics from "expo-haptics";
+import { FONTS } from "../resources/fonts";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -59,7 +60,7 @@ export default () => {
               style={{
                 color: COLORS.foregroundLight,
                 fontSize: 12,
-                fontFamily: "Circular Medium",
+                fontFamily: FONTS.primaryMedium,
               }}>
               Skip
             </Text>
@@ -76,17 +77,17 @@ export default () => {
             style={{
               color: COLORS.primaryBlue,
               textTransform: "uppercase",
-              fontSize: 12,
+              fontSize: 11,
               letterSpacing: 1,
-              fontFamily: "Circular Medium",
-              marginBottom: 16,
+              fontFamily: FONTS.primaryMedium,
+              marginBottom: 18,
             }}>
             Getting Started
           </Text>
           <Text
             style={{
               fontSize: 20,
-              fontFamily: "Circular Bold",
+              fontFamily: FONTS.primarySemibold,
               letterSpacing: -0.4,
               color: COLORS.foregroundLight,
               marginBottom: 8,
@@ -107,9 +108,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 15,
+                fontSize: 14,
                 letterSpacing: -0.4,
-                fontFamily: "Circular Book",
+                fontFamily: FONTS.primaryRegular,
               }}>
               Setup your profile
             </Text>
@@ -128,9 +129,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 15,
+                fontSize: 14,
                 letterSpacing: -0.4,
-                fontFamily: "Circular Book",
+                fontFamily: FONTS.primaryRegular,
               }}>
               Customize categories
             </Text>
@@ -147,9 +148,9 @@ export default () => {
             <Text
               style={{
                 color: COLORS.foregroundLight,
-                fontSize: 15,
+                fontSize: 14,
                 letterSpacing: -0.4,
-                fontFamily: "Circular Book",
+                fontFamily: FONTS.primaryRegular,
               }}>
               Create your first goal
             </Text>
