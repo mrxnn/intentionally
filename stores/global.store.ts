@@ -1,9 +1,15 @@
 import { create } from "zustand";
-import { categories, transactions } from "./mock.data";
+import { accounts, categories, transactions } from "./mock.data";
+
+export type Account = {
+  name: string;
+  amount: number;
+  currency: string;
+};
 
 export type Budget = {
-  total: string;
-  spent: string;
+  total: number;
+  spent: number;
   currency: string;
   month?: string;
   year?: string;
@@ -18,12 +24,14 @@ export type Category = {
 
 export type Transaction = {
   description: string;
-  category: Category;
-  amount: string;
+  amount: number;
   datetime: Date;
+  account: Account;
+  category: Category;
 };
 
 type GlobalState = {
+  accounts: Account[];
   categories: Category[];
   transactions: Transaction[];
   addCategory: (category: Category) => void;
@@ -32,6 +40,7 @@ type GlobalState = {
 };
 
 export let useGlobalStore = create<GlobalState>((set) => ({
+  accounts: [...accounts],
   categories: [...categories],
   transactions: [...transactions],
 

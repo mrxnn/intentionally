@@ -113,11 +113,11 @@ const BudgetItem = ({
 }: {
   icon: string;
   name: string;
-  total: string;
-  spent: string;
+  total: number;
+  spent: number;
   currency: string;
 }) => {
-  let spentPercentage = (+spent / +total) * 100;
+  let spentPercentage = (spent / total) * 100;
 
   return (
     <View

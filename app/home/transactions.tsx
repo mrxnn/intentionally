@@ -10,7 +10,7 @@ export default () => {
   return (
     <SafeAreaView>
       <Header />
-      <ScrollView>
+      <ScrollView style={{ marginTop: 20 }}>
         <TransactionBreakdownChart income={1500} expenses={900} />
         <Records />
       </ScrollView>

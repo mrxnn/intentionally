@@ -7,10 +7,10 @@ import {
   StyleProp,
   ViewStyle,
 } from "react-native";
-import { Landmark, Wallet, BarChart3, Plus } from "lucide-react-native";
+import { Landmark, Wallet, Plus, LayoutList } from "lucide-react-native";
 import { COLORS } from "../resources/colors";
 import { usePathname, useRouter } from "expo-router";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import * as Haptics from "expo-haptics";
 
 export const Tabs = () => {
@@ -28,7 +28,7 @@ export const Tabs = () => {
     <TabContainer>
       <TabItem
         name="Transactions"
-        icon={<Landmark color={COLORS.foregroundLight} size={24} />}
+        icon={<LayoutList color={COLORS.foregroundLight} size={24} />}
         url="/home/transactions"
         pathname={pathname}
         previousPathname={cachedPathname}
@@ -41,9 +41,9 @@ export const Tabs = () => {
         previousPathname={cachedPathname}
       />
       <TabItem
-        name="Insights"
-        icon={<BarChart3 color={COLORS.foregroundLight} size={24} />}
-        url="/home/insights"
+        name="Accounts"
+        icon={<Landmark color={COLORS.foregroundLight} size={24} />}
+        url="/home/accounts"
         pathname={pathname}
         previousPathname={cachedPathname}
       />
@@ -72,12 +72,14 @@ const TabItem = ({
   url,
   pathname,
   previousPathname,
+  style,
 }: {
   name: string;
   icon: ReactNode;
   url: string;
   pathname: string;
   previousPathname: string;
+  style?: StyleProp<ViewStyle>;
 }) => {
   let router = useRouter();
   let isActive =
@@ -90,12 +92,15 @@ const TabItem = ({
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         router.push(url);
       }}
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        flex: 1,
-        opacity: isActive ? 1 : 0.4,
-      }}>
+      style={[
+        style,
+        {
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          opacity: isActive ? 1 : 0.4,
+        },
+      ]}>
       {icon}
       <Text
         style={{ color: COLORS.foregroundLight, fontSize: 12, marginTop: 4 }}>

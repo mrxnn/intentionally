@@ -1,4 +1,12 @@
-import { Budget, Category, Transaction } from "./global.store";
+import { Account, Category, Transaction } from "./global.store";
+
+export let accounts: Account[] = [
+  {
+    name: "Cash",
+    amount: 850,
+    currency: "USD",
+  },
+];
 
 export let categories: Category[] = [
   {
@@ -7,15 +15,15 @@ export let categories: Category[] = [
     type: "Expense",
     budgets: [
       {
-        total: "500",
-        spent: "30",
+        total: 500,
+        spent: 30,
         currency: "USD",
         month: "6",
         year: "2023",
       },
       {
-        total: "500",
-        spent: "410",
+        total: 500,
+        spent: 410,
         currency: "USD",
         month: "6",
         year: "2023",
@@ -34,8 +42,8 @@ export let categories: Category[] = [
     type: "Expense",
     budgets: [
       {
-        total: "500",
-        spent: "90",
+        total: 500,
+        spent: 90,
         currency: "USD",
         month: "6",
         year: "2023",
@@ -47,26 +55,30 @@ export let categories: Category[] = [
 export let transactions: Transaction[] = [
   {
     description: "",
-    amount: "35",
+    amount: 35,
     datetime: new Date(),
+    account: accounts[0],
     category: categories[0],
   },
   {
     description: "",
-    amount: "50",
+    amount: 50,
     datetime: new Date(),
+    account: accounts[0],
     category: categories[0],
   },
   {
     description: "",
-    amount: "19",
+    amount: 19,
     datetime: new Date(),
+    account: accounts[0],
     category: categories[2],
   },
   {
     description: "",
-    amount: "19",
+    amount: 19,
     datetime: new Date(),
+    account: accounts[0],
     category: categories[1],
   },
 ];

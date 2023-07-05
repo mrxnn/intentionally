@@ -40,7 +40,6 @@ export const TransactionBreakdownChart = ({
     <View
       style={{
         marginLeft: 16,
-        marginTop: 20,
         paddingLeft: 8,
         flexDirection: "row",
         backgroundColor: "#212832",
