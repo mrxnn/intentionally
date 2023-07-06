@@ -36,7 +36,7 @@ const Header = () => {
           fontFamily: FONTS.primarySemibold,
           letterSpacing: -0.4,
         }}>
-        Breakdown
+        Dashboard
       </Text>
       <TouchableOpacity
         onPress={() => {}}
@@ -81,9 +81,10 @@ const Records = () => {
       acc[category].push(transaction);
       return acc;
     }, {});
+  let size = Object.entries(grouped).length;
 
   return (
-    <View style={{ paddingHorizontal: 20, marginTop: 32 }}>
+    <View style={{ paddingHorizontal: 20, marginTop: 32, paddingBottom: 110 }}>
       <View
         style={{
           flexDirection: "row",
@@ -120,12 +121,13 @@ const Records = () => {
         </TouchableOpacity>
       </View>
       <View style={{ rowGap: 24, marginTop: 28 }}>
-        {Object.entries(grouped).map(([category, transactions]) => (
+        {Object.entries(grouped).map(([category, transactions], idx) => (
           <Record
             key={category}
             icon={transactions[0].category.icon}
             category={category}
             noOfEntries={transactions.length}
+            last={idx === size - 1}
           />
         ))}
       </View>
@@ -137,10 +139,12 @@ const Record = ({
   icon,
   category,
   noOfEntries,
+  last,
 }: {
   icon: string;
   category: string;
   noOfEntries: number;
+  last?: boolean;
 }) => {
   return (
     <View style={{ flexDirection: "row", columnGap: 20, alignItems: "center" }}>
@@ -151,7 +155,7 @@ const Record = ({
           flexDirection: "row",
           justifyContent: "space-between",
           borderBottomColor: COLORS.borderBlue,
-          borderBottomWidth: 1,
+          borderBottomWidth: last ? 0 : 0.6,
           paddingBottom: 8,
         }}>
         <View style={{ gap: 3 }}>
