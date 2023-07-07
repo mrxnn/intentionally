@@ -64,6 +64,7 @@ export let transactions: Transaction[] = [
     datetime: new Date(),
     account: accounts[0],
     category: categories[0],
+    currency: "USD",
   },
   {
     description: "",
@@ -71,6 +72,7 @@ export let transactions: Transaction[] = [
     datetime: new Date(),
     account: accounts[0],
     category: categories[0],
+    currency: "USD",
   },
   {
     description: "",
@@ -78,6 +80,7 @@ export let transactions: Transaction[] = [
     datetime: new Date(),
     account: accounts[0],
     category: categories[2],
+    currency: "USD",
   },
   {
     description: "",
@@ -85,5 +88,6 @@ export let transactions: Transaction[] = [
     datetime: new Date(),
     account: accounts[0],
     category: categories[1],
+    currency: "USD",
   },
 ];

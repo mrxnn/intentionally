@@ -128,6 +128,21 @@ const Records = () => {
             category={category}
             noOfEntries={transactions.length}
             last={idx === size - 1}
+            primaryAmount={{
+              currency: "$",
+              type: "prefix",
+              value: transactions
+                .map((t) => t.amount)
+                .reduce((acc, curr) => acc + curr, 0),
+            }}
+            secondaryAmount={{
+              currency: "LKR",
+              type: "postfix",
+              value:
+                transactions
+                  .map((t) => t.amount)
+                  .reduce((acc, curr) => acc + curr, 0) * 311.07, // mutiply by the exchange rate
+            }}
           />
         ))}
       </View>
@@ -135,15 +150,25 @@ const Records = () => {
   );
 };
 
+type Amount = {
+  value: number;
+  currency: string;
+  type: "prefix" | "postfix";
+};
+
 const Record = ({
   icon,
   category,
   noOfEntries,
+  primaryAmount,
+  secondaryAmount,
   last,
 }: {
   icon: string;
   category: string;
   noOfEntries: number;
+  primaryAmount: Amount;
+  secondaryAmount?: Amount;
   last?: boolean;
 }) => {
   return (
@@ -183,7 +208,15 @@ const Record = ({
               color: COLORS.foregroudLightInactive,
               fontSize: 13,
             }}>
-            {(Math.random() * 120).toFixed()} €
+            {(secondaryAmount.type === "prefix" && (
+              <>
+                {secondaryAmount?.currency} {secondaryAmount?.value.toFixed()}
+              </>
+            )) || (
+              <>
+                {secondaryAmount?.value.toFixed()} {secondaryAmount?.currency}
+              </>
+            )}
           </Text>
           <View
             style={{
@@ -201,7 +234,15 @@ const Record = ({
               color: COLORS.foregroundLight,
               fontSize: 13,
             }}>
-            {(Math.random() * 120).toFixed()} USD
+            {(primaryAmount.type === "prefix" && (
+              <>
+                {primaryAmount?.currency} {primaryAmount?.value.toFixed()}
+              </>
+            )) || (
+              <>
+                {primaryAmount?.value.toFixed()} {primaryAmount?.currency}
+              </>
+            )}
           </Text>
         </View>
       </View>

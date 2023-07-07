@@ -28,6 +28,7 @@ export type Transaction = {
   datetime: Date;
   account: Account;
   category: Category;
+  currency: string;
 };
 
 type GlobalState = {
