@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import { COLORS } from "../../resources/colors";
-import { Plus } from "lucide-react-native";
+import { ChevronDown, Plus } from "lucide-react-native";
 import Progress from "react-native-circular-progress-indicator";
 import { SearchBox } from "../../components/search";
 import { Category, useGlobalStore } from "../../stores/global.store";
@@ -38,7 +38,7 @@ export default () => {
       <SafeAreaView style={{ flex: 1 }}>
         <ScrollView
           style={{
-            paddingHorizontal: 20,
+            paddingHorizontal: 16,
             paddingTop: Platform.OS === "ios" ? 16 : 40,
           }}>
           <View
@@ -56,15 +56,40 @@ export default () => {
               }}>
               Monthly budget
             </Text>
-            <TouchableOpacity onPress={() => router.push("/create-category")}>
-              <Plus size={28} color={COLORS.primaryBlue} />
+            <TouchableOpacity
+              onPress={() => {}}
+              style={{
+                backgroundColor: COLORS.backgroundGray,
+                paddingVertical: 6,
+                paddingHorizontal: 12,
+                borderRadius: 8,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 4,
+              }}>
+              <Text
+                style={{
+                  color: COLORS.foregroundLight,
+                  fontSize: 13,
+                  fontFamily: FONTS.primaryMedium,
+                }}>
+                November
+              </Text>
+              <ChevronDown
+                size={16}
+                color={COLORS.foregroundLight}
+                style={{ transform: [{ translateY: 1.2 }] as any }}
+              />
             </TouchableOpacity>
+            {/* <TouchableOpacity onPress={() => router.push("/create-category")}>
+              <Plus size={28} color={COLORS.primaryBlue} />
+            </TouchableOpacity> */}
           </View>
           <SearchBox
             value={search}
             onChange={setSearch}
             placeholder="Search"
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 16 }}
           />
           <Text
             style={{
