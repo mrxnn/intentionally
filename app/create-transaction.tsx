@@ -29,6 +29,7 @@ export default () => {
       amount: parseInt(amount),
       datetime: new Date(),
       description: note,
+      currency: "USD",
       account: accounts.find((acc) => acc.name === account),
       category: categories.find((cat) => cat.name === category),
     };
