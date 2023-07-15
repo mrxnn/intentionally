@@ -1,4 +1,4 @@
-import { Text, View, ScrollView } from "react-native";
+import { Text, View, ScrollView, Platform } from "react-native";
 import { SafeAreaView } from "react-native";
 import { COLORS } from "../../resources/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -27,7 +27,7 @@ const Header = () => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        marginTop: 16,
+        paddingTop: Platform.OS === "ios" ? 16 : 40,
       }}>
       <Text
         style={{

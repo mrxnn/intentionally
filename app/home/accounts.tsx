@@ -1,4 +1,5 @@
 import {
+  Platform,
   SafeAreaView,
   ScrollView,
   Text,
@@ -37,7 +38,7 @@ const Header = () => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        marginTop: 16,
+        paddingTop: Platform.OS === "ios" ? 16 : 40,
       }}>
       <Text
         style={{
@@ -87,7 +88,7 @@ export const AccountCard = (account: Account) => {
         alignItems: "center",
         gap: 10,
       }}>
-      <CreditCard size={20} />
+      <CreditCard size={20} color={COLORS.primaryBlue} />
       <Text
         style={{
           color: COLORS.foregroundLight,

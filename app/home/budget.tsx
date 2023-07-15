@@ -89,7 +89,7 @@ export default () => {
             value={search}
             onChange={setSearch}
             placeholder="Search"
-            style={{ marginTop: 16 }}
+            style={{ marginTop: 20 }}
           />
           <Text
             style={{
