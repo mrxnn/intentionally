@@ -81,9 +81,6 @@ export default () => {
                 style={{ transform: [{ translateY: 1.2 }] as any }}
               />
             </TouchableOpacity>
-            {/* <TouchableOpacity onPress={() => router.push("/create-category")}>
-              <Plus size={28} color={COLORS.primaryBlue} />
-            </TouchableOpacity> */}
           </View>
           <SearchBox
             value={search}
@@ -122,9 +119,39 @@ export default () => {
           </Text>
           <View style={{ rowGap: 24, marginTop: 28 }}>
             {categories.map((category, idx) => (
-              <CategoryItem key={idx} {...category} />
+              <CategoryItem
+                key={idx}
+                {...category}
+                isLast={categories.length === idx + 1}
+              />
             ))}
           </View>
+          <TouchableOpacity
+            style={{
+              marginLeft: 40,
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor: COLORS.backgroundGray,
+              paddingHorizontal: 8,
+              paddingVertical: 8,
+              alignSelf: "flex-start",
+              marginTop: 16,
+              borderRadius: 8,
+              gap: 4,
+            }}
+            onPress={() => router.push("/create-category")}>
+            <Plus size={16} />
+            <Text
+              style={{
+                fontSize: 12,
+                fontFamily: FONTS.primaryMedium,
+                color: COLORS.primaryBlue,
+                letterSpacing: 1,
+                transform: [{ translateY: 0.4 }],
+              }}>
+              NEW CATEGORY
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -211,7 +238,11 @@ const BudgetItem = ({
   );
 };
 
-const CategoryItem = ({ icon, name }: Category) => {
+const CategoryItem = ({
+  icon,
+  name,
+  isLast,
+}: Category & { isLast: boolean }) => {
   let router = useRouter();
 
   return (
@@ -229,7 +260,7 @@ const CategoryItem = ({ icon, name }: Category) => {
           justifyContent: "space-between",
           alignItems: "center",
           borderBottomColor: COLORS.borderBlue,
-          borderBottomWidth: 1,
+          borderBottomWidth: isLast ? 0 : 1,
           paddingBottom: 20,
         }}>
         <View style={{ gap: 3, transform: [{ translateY: 6 }] }}>

@@ -5,6 +5,23 @@
       "bundler": "metro"
     },
     "name": "intentionally",
-    "slug": "intentionally"
-  }
+    "slug": "intentionally",
+    "plugins": ["expo-build-properties"]
+  },
+  "plugins": [
+    [
+      "@morrowdigital/watermelondb-expo-plugin",
+      {
+        "databases": ["morrow.db"]
+      }
+    ],
+    [
+      "expo-build-properties",
+      {
+        "android": {
+          "kotlinVersion": "1.6.10"
+        }
+      }
+    ]
+  ]
 }
