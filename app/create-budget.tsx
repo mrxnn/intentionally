@@ -18,15 +18,21 @@ export default () => {
   let amountInputRef = useRef(null);
   let [amount, setAmount] = useState("");
   let [period, setPeriod] = useState(() => format(new Date(), "MMMM yyyy"));
-  let { addBudget } = useGlobalStore();
+  let categories = useGlobalStore((state) => state.categories);
+  let addBudget = useGlobalStore((state) => state.addBudget);
 
   let handleCreate = () => {
     let month = getMonth(parse(period, "MMMM yyyy", new Date())) + 1;
     let year = getYear(parse(period, "MMMM yyyy", new Date()));
 
+    let selectedCategory = categories.find((cat) => cat.name === name);
+    let budgetForTheCategory = selectedCategory.budgets.find(
+      (b) => b.month === month.toString() && b.year === year.toString()
+    );
+
     addBudget(name as string, {
       total: +amount,
-      spent: 0,
+      spent: budgetForTheCategory?.spent || 0,
       currency: "USD",
       month: month.toString(),
       year: year.toString(),

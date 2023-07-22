@@ -5,8 +5,8 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { COLORS } from "../resources/colors";
 import { Background } from "../components/background";
 import { Banner } from "../components/banner";
-import { format } from "date-fns";
-import { Transaction, useGlobalStore } from "../stores/global.store";
+import { format, getMonth, getYear, parse } from "date-fns";
+import { Account, Transaction, useGlobalStore } from "../stores/global.store";
 import { FONTS } from "../resources/fonts";
 
 const INPUT_HEIGHT = 60;
@@ -23,19 +23,71 @@ export default () => {
   let categories = useGlobalStore((state) => state.categories);
   let accounts = useGlobalStore((state) => state.accounts);
   let addTransaction = useGlobalStore((state) => state.addTransaction);
+  let updateAccount = useGlobalStore((state) => state.updateAccount);
+  let addBudget = useGlobalStore((state) => state.addBudget);
 
   let handleCreate = () => {
-    let transaction: Transaction = {
-      amount: parseInt(amount),
-      datetime: new Date(),
-      description: note,
-      currency: "USD",
-      account: accounts.find((acc) => acc.name === account),
-      category: categories.find((cat) => cat.name === category),
-    };
+    let hasEnoughCashInTheAccount = false;
+    let hasNotExceededTheBudget = false;
 
-    addTransaction(transaction);
-    router.back();
+    // deduct the amount from account
+    let selectedAccount = accounts.find((acc) => acc.name === account);
+    if (selectedAccount) {
+      if (selectedAccount.amount < parseFloat(amount)) {
+        console.log("Account balance is low");
+        return;
+      } else {
+        hasEnoughCashInTheAccount = true;
+      }
+    }
+
+    // deduct the amount from the monthly budget (if any)
+    let month = getMonth(parse(period, "d MMMM yyyy", new Date())) + 1;
+    let year = getYear(parse(period, "d MMMM yyyy", new Date()));
+
+    let selectedCategory = categories.find((cat) => cat.name === category);
+    let budgetForTheCategory = selectedCategory.budgets.find(
+      (b) => b.month === month.toString() && b.year === year.toString()
+    );
+
+    if (budgetForTheCategory) {
+      let restOfAmount =
+        budgetForTheCategory.total - budgetForTheCategory.spent;
+
+      if (restOfAmount <= parseFloat(amount)) {
+        console.log("You're exceeding the monthly budget");
+        return;
+      } else {
+        hasNotExceededTheBudget = true;
+      }
+    }
+
+    if (hasEnoughCashInTheAccount && hasNotExceededTheBudget) {
+      // Update the account balance
+      updateAccount({
+        ...selectedAccount,
+        amount: selectedAccount.amount - parseFloat(amount),
+      });
+
+      // Update the monthly budget
+      addBudget(selectedCategory.name, {
+        ...budgetForTheCategory,
+        spent: budgetForTheCategory.spent + parseFloat(amount),
+      });
+
+      // Create the transaction
+      let transaction: Transaction = {
+        amount: parseInt(amount),
+        datetime: new Date(),
+        description: note,
+        currency: "USD",
+        account: accounts.find((acc) => acc.name === account),
+        category: categories.find((cat) => cat.name === category),
+      };
+
+      addTransaction(transaction);
+      router.back();
+    }
   };
 
   useEffect(() => {

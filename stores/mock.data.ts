@@ -60,22 +60,6 @@ export let categories: Category[] = [
 export let transactions: Transaction[] = [
   {
     description: "",
-    amount: 35,
-    datetime: new Date(),
-    account: accounts[0],
-    category: categories[0],
-    currency: "USD",
-  },
-  {
-    description: "",
-    amount: 50,
-    datetime: new Date(),
-    account: accounts[0],
-    category: categories[0],
-    currency: "USD",
-  },
-  {
-    description: "",
     amount: 19,
     datetime: new Date(),
     account: accounts[0],

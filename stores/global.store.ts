@@ -38,6 +38,7 @@ type GlobalState = {
   addCategory: (category: Category) => void;
   addBudget: (categoryName: string, budget: Budget) => void;
   addTransaction: (transaction: Transaction) => void;
+  updateAccount: (newAccount: Account) => void;
 };
 
 export let useGlobalStore = create<GlobalState>((set) => ({
@@ -93,4 +94,18 @@ export let useGlobalStore = create<GlobalState>((set) => ({
     set((state) => ({
       transactions: [...state.transactions, transaction],
     })),
+
+  // Update account
+  updateAccount: (newAccount: Account) =>
+    set((state) => {
+      const updatedAccounts = state.accounts.map((account) =>
+        account.name === newAccount.name
+          ? { ...account, ...newAccount }
+          : account
+      );
+
+      return {
+        accounts: updatedAccounts,
+      };
+    }),
 }));
