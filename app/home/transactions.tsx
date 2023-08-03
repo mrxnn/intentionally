@@ -74,7 +74,7 @@ type GroupedTransactions = {
 const Records = () => {
   let transactions = useGlobalStore((state) => state.transactions);
   let grouped: GroupedTransactions = transactions
-    .filter((t) => t.datetime.getMonth() === 6)
+    .filter((t) => t.datetime.getMonth() === new Date().getMonth())
     .reduce((acc, transaction) => {
       let category = transaction.category.name;
       if (!acc[category]) acc[category] = [];
